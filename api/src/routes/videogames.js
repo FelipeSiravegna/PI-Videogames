@@ -4,12 +4,18 @@ const axios = require("axios");
 const { Videogame, Genre } = require("../db");
 const { API_KEY } = process.env;
 
-router.get("/videogames", async (req, res) => {
+// router.get("/", (req, res) => {
+//   res.json("Hola");
+// });
+
+//Traer todos los juegos tanto de la db como de la API
+//Se puede traer todos los juegos que contengan la palabra que se reciba por query tanto de la db como de la API
+router.get("/", async (req, res) => {
   //Guardo el nombre que recibo por query
   const { name } = req.query;
 
   try {
-    //Si name tiene algo
+    //Traer juegos que contengan name tanto de la db como de la api
     if (name) {
       //Busco en la db un juego con el nombre que recibí
       let gamesDB = await Videogame.findOne({
@@ -28,7 +34,7 @@ router.get("/videogames", async (req, res) => {
           genres: gamesDB.genres.map((genre) => genre.name).join(", "),
         };
 
-        //Busco en la API algún juego con el nombre que recibí
+        //Traigo de la API los 15 juegos que coincidan con la palabra ingresada por query
         let gamesAPI = await axios.get(
           `https://api.rawg.io/api/games?search=${name}&key=${API_KEY}&page_size=15`
         );
@@ -39,29 +45,123 @@ router.get("/videogames", async (req, res) => {
           let game = {
             id: g.id,
             name: g.name,
+            image: g.background_image,
             rating: g.rating,
             source: "API",
-            image: g.background_image,
             genres:
               //Si tiene generos definidos hago un map y devuelvo un string de generos separados por ,
               g.genres &&
               g.genres
                 .map((genre) => genre.name)
-                .filter((ge) => ge !== null)
+                .filter((genre) => genre !== null)
                 .join(", "),
           };
 
           //Devuelvo game
           return game;
         });
-
-        //Devuelvo todos los resultados (tanto de la api como de la db)
-        res.json(gamesDBFull.concat(gamesAPIFull));
+        if (gamesAPIFull.concat(gamesDBFull).length === 0) {
+          res
+            .status(404)
+            .json({ error: "No se encontraron juegos con ese nombre" });
+        } else {
+          res.status(200).json(gamesAPIFull.concat(gamesDBFull));
+        }
       } else {
+        //Traigo solo los juegos de la API con el nombre que recibí
+        let gamesAPI = await axios.get(
+          `https://api.rawg.io/api/games?search=${name}&key=${API_KEY}&page_size=15`
+        );
+
+        //gamesAPIFull es un array de objetos (game)
+        gamesAPIFull = gamesAPI.data.results.map((g) => {
+          //game contiene solo la información que necesito y la propiedad source para saber de donde fue obtenido
+          let game = {
+            id: g.id,
+            name: g.name,
+            image: g.background_image,
+            rating: g.rating,
+            source: "API",
+            genres:
+              //Si tiene generos definidos hago un map y devuelvo un string de generos separados por ,
+              g.genres &&
+              g.genres
+                .map((genre) => genre.name)
+                .filter((genre) => genre !== null)
+                .join(", "),
+          };
+
+          //Devuelvo game
+          return game;
+        });
+        if (gamesAPIFull.length === 0) {
+          res
+            .status(404)
+            .json({ error: "No se encontraron juegos con ese nombre" });
+        } else {
+          res.status(200).json(gamesAPIFull);
+        }
       }
+      //Traer todos los juegos de la db y la API
+    } else {
+      //Arreglo donde voy guardando los juegos
+      let gameResults = [];
+
+      //Guardo el endpoint en una variable
+      let allGamesAPI = `https://api.rawg.io/api/games?key=${API_KEY}`;
+
+      //Traigo 105 juegos de la API
+      for (let i = 0; i < 3; i++) {
+        //En games almaceno la data
+        let games = (await axios.get(allGamesAPI)).data;
+
+        //Creo un nuevo game por cada resultado en games
+        let dataGame = games.results.map((g) => {
+          let game = {
+            id: g.id,
+            name: g.name,
+            image: g.background_image,
+            rating: g.rating,
+            source: "API",
+            genres:
+              //Si tiene generos definidos hago un map y devuelvo un string de generos separados por ,
+              g.genres &&
+              g.genres
+                .map((genre) => genre.name)
+                .filter((genre) => genre !== null)
+                .join(", "),
+          };
+
+          //Devuelvo game
+          return game;
+        });
+        //Ahora el endpoint es igual al link que se encuentra en games.next, que trae los siguientes 15 juegos
+        allGamesAPI = games.next;
+        //A gameResults le contateno todos los juegos que traje (el objeto que cree)
+        gameResults = gameResults.concat(dataGame);
+      }
+
+      const gamesDB = await Videogame.findAll({
+        include: [Genre],
+      });
+
+      //Paso lo que está en gamesDB a JSON
+      let jsonGamesDB = gamesDB.map((g) => g.toJSON());
+
+      jsonGamesDB.forEach((X) => {
+        (X.source = "Created"),
+          (X.genres = X.genres
+            .map((genre) => genre.name)
+            .filter((g) => g !== null)
+            .join(", "));
+      });
+
+      gameResults = gameResults.concat(jsonGamesDB);
+
+      res.json(gameResults);
     }
   } catch (e) {
-    res.send(e);
+    res.status(404).json({ e });
   }
 });
 
