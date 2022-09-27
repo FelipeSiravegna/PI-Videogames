@@ -94,6 +94,7 @@ router.get("/", async (req, res) => {
           //Devuelvo game
           return game;
         });
+        //Si en el array con toda la info no hay nada devuelvo un error. Y si tiene info dentro devuelvo el array
         if (gamesAPIFull.length === 0) {
           res
             .status(404)
@@ -110,7 +111,7 @@ router.get("/", async (req, res) => {
       //Guardo el endpoint en una variable
       let allGamesAPI = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
-      //Traigo 105 juegos de la API
+      //Traigo 120 juegos de la API
       for (let i = 0; i < 3; i++) {
         //En games almaceno la data
         let games = (await axios.get(allGamesAPI)).data;
@@ -135,12 +136,13 @@ router.get("/", async (req, res) => {
           //Devuelvo game
           return game;
         });
-        //Ahora el endpoint es igual al link que se encuentra en games.next, que trae los siguientes 15 juegos
+        //Ahora el endpoint es igual al link que se encuentra en games.next, que trae los siguientes 40 juegos
         allGamesAPI = games.next;
         //A gameResults le contateno todos los juegos que traje (el objeto que cree)
         gameResults = gameResults.concat(dataGame);
       }
 
+      //Traigo todos los juegos de la DB junto con la tabla Genre
       const gamesDB = await Videogame.findAll({
         include: [Genre],
       });
@@ -156,8 +158,10 @@ router.get("/", async (req, res) => {
             .join(", "));
       });
 
+      //Concateno a gameResulst los juegos de la api
       gameResults = gameResults.concat(jsonGamesDB);
 
+      //Devuelvo todos los juegos
       res.json(gameResults);
     }
   } catch (e) {

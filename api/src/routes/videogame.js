@@ -4,6 +4,7 @@ const axios = require("axios");
 const { Videogame, Genre } = require("../db");
 const { API_KEY } = process.env;
 
+//Traigo el videojuego que tenga el id que recibo por params
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -11,6 +12,7 @@ router.get("/:id", async (req, res) => {
     if (id.includes("-")) {
       const gameDB = await Videogame.findOne({
         where: { id },
+        //Me traigo la tabla de Genre
         include: {
           model: Genre,
           attributes: ["name"],
@@ -18,8 +20,10 @@ router.get("/:id", async (req, res) => {
         },
       });
 
+      //Guardo gameDB en juego para que sea más cómodo al crear gameDetails
       const juego = gameDB;
 
+      //Creo un juego con toda la información que contiene gameDB (ahora almacenado en juego)
       const gameDetails = {
         id: juego.id,
         name: juego.name,
@@ -33,14 +37,18 @@ router.get("/:id", async (req, res) => {
         updatedAt: juego.updatedAt,
       };
 
+      //Devuelvo el juego
       res.json(gameDetails);
     } else {
+      //Si no está en la DB lo traigo desde la API
       const APIResponse = await axios.get(
         `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
       );
 
+      //Guardo la data de la respuesta de la API en juego para que sea más cómodo a la hora de crear gameDetails
       const juego = APIResponse.data;
 
+      //Creo un juego con la info que trae la API (ahora almacenada en juego)
       const gameDetails = {
         name: juego.name,
         image: juego.background_image,
@@ -57,9 +65,11 @@ router.get("/:id", async (req, res) => {
           .join(", "),
       };
 
+      //Devuelvo el juego creado
       return res.json(gameDetails);
     }
   } catch (e) {
+    //En caso de no encontrarse el juego devuelve el siguiente error
     res.status(404).json({ error: "No se encontró el ID" });
   }
 });
