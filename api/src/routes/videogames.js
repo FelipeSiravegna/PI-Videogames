@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
           name: gamesDB.name,
           image: gamesDB.image,
           rating: gamesDB.rating,
-          source: "DB",
+          createdByUser: gamesDB.createdByUser,
           genres: gamesDB.genres.map((genre) => genre.name).join(", "),
         };
 
@@ -45,9 +45,9 @@ router.get("/", async (req, res) => {
           let game = {
             id: g.id,
             name: g.name,
+            createdByUser: false,
             image: g.background_image,
             rating: g.rating,
-            source: "API",
             genres:
               //Si tiene generos definidos hago un map y devuelvo un string de generos separados por ,
               g.genres &&
@@ -79,9 +79,9 @@ router.get("/", async (req, res) => {
           let game = {
             id: g.id,
             name: g.name,
+            createdByUser: false,
             image: g.background_image,
             rating: g.rating,
-            source: "API",
             genres:
               //Si tiene generos definidos hago un map y devuelvo un string de generos separados por ,
               g.genres &&
@@ -121,9 +121,9 @@ router.get("/", async (req, res) => {
           let game = {
             id: g.id,
             name: g.name,
+            createdByUser: false,
             image: g.background_image,
             rating: g.rating,
-            source: "API",
             genres:
               //Si tiene generos definidos hago un map y devuelvo un string de generos separados por ,
               g.genres &&
@@ -151,7 +151,7 @@ router.get("/", async (req, res) => {
       let jsonGamesDB = gamesDB.map((g) => g.toJSON());
 
       jsonGamesDB.forEach((X) => {
-        (X.source = "Created"),
+        (X.createdByUser = true),
           (X.genres = X.genres
             .map((genre) => genre.name)
             .filter((g) => g !== null)

@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
         this.setDataValue("name", value.toLowerCase());
       },
     },
+    createdByUser: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
     image: {
       type: DataTypes.TEXT,
     },

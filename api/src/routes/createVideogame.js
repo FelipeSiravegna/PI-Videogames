@@ -7,10 +7,19 @@ router.post("/", async (req, res) => {
   const { name, description, image, releaseDate, rating, platforms, genres } =
     req.body;
 
+  if (!name || !description || !platforms) {
+    res.status(404).send("Missing info!");
+  }
+
+  if (rating > 5 || rating < 1) {
+    res.status(404).send("Invalid rating!");
+  }
+
   try {
     //Creo un nuevo juego en la DB con los datos que recibí del formulario
     const newGame = await Videogame.create({
       name: name,
+      createdByUser: true,
       description: description,
       image: image,
       releaseDate: releaseDate,
