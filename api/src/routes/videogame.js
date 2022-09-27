@@ -27,6 +27,7 @@ router.get("/:id", async (req, res) => {
       const gameDetails = {
         id: juego.id,
         name: juego.name,
+        source: "DB",
         image: juego.image,
         genres: juego.genres.map((j) => j.name).join(", "),
         description: juego.description,
@@ -51,6 +52,7 @@ router.get("/:id", async (req, res) => {
       //Creo un juego con la info que trae la API (ahora almacenada en juego)
       const gameDetails = {
         name: juego.name,
+        source: "API",
         image: juego.background_image,
         genres: juego.genres
           .map((j) => j.name)

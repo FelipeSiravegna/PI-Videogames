@@ -21,6 +21,9 @@ module.exports = (sequelize) => {
         this.setDataValue("name", value.toLowerCase());
       },
     },
+    source: {
+      type: DataTypes.TEXT,
+    },
     image: {
       type: DataTypes.TEXT,
     },
