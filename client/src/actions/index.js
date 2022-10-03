@@ -14,7 +14,7 @@ export function getVideogames() {
 
 //Busco un videojuego usando el searchBar
 export function searchVideogame(videogameName) {
-  console.log("Buscando videojuegos");
+  // console.log("Buscando videojuegos");
   return function (dispatch) {
     return fetch(`http://localhost:3001/videogames?name=${videogameName}`)
       .then((response) => response.json())
