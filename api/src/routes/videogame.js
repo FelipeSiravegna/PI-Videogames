@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
       const gameDetails = {
         id: juego.id,
         name: juego.name,
-        source: "DB",
+        createdByUser: juego.createdByUser,
         image: juego.image,
         genres: juego.genres.map((j) => j.name).join(", "),
         description: juego.description,
