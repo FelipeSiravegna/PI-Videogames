@@ -1,7 +1,6 @@
 const initialState = {
   videogames: [],
-  detail: {},
-  videogamesSearch: [],
+  genres: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -12,11 +11,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         videogames: action.payload,
       };
-    case "SEARCH_VIDEOGAME":
+    case "GET_GENRES":
       return {
-        //Devuelve una copia del state y le concatena en la propiedad videogamesSearch los videojuegos que traiga de la busqueda
         ...state,
-        videogamesSearch: action.payload,
+        genres: action.payload,
       };
     default:
       return { ...state };
