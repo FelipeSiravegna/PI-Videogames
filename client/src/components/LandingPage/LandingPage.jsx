@@ -5,7 +5,7 @@ import s from './LandingPage.module.css';
 export default function LandingPage(){
     const history = useHistory();
     const handleClick = () => {
-        history.push('/videogames');
+        history.push('/home');
     }
     
 

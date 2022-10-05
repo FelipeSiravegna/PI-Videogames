@@ -4,7 +4,7 @@ export function getVideogames() {
     return fetch(`http://localhost:3001/videogames`)
       .then((response) => response.json())
       .then((responsejson) => {
-        dispatch({
+        return dispatch({
           type: "GET_VIDEOGAMES",
           payload: responsejson,
         });
@@ -19,7 +19,7 @@ export function searchVideogame(videogameName) {
     return fetch(`http://localhost:3001/videogames?name=${videogameName}`)
       .then((response) => response.json())
       .then((responsejson) => {
-        dispatch({
+        return dispatch({
           type: "SEARCH_VIDEOGAME",
           payload: responsejson,
         });
