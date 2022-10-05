@@ -43,9 +43,3 @@ conn.sync({ force: true }).then(() => {
     console.log("%s listening at 3001", await checkDB()); // eslint-disable-line no-console
   });
 });
-
-// conn.sync().then(() => {
-//   server.listen(3001, async () => {
-//     console.log("%s listening at 3001", await checkDB()); // eslint-disable-line no-console
-//   });
-// });
