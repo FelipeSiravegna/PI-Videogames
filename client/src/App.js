@@ -9,9 +9,9 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Route exact path={"/"} render={() => <LandingPage />} />
-        <Route path={"/home"} render={() => <Searchbar />} />
-        <Route exact path={"/home"} render={() => <Home />} />
+        <Route exact path={"/"} component={LandingPage} />
+        <Route path={"/home"} component={Searchbar} />
+        <Route exact path={"/home"} component={Home} />
       </div>
     </BrowserRouter>
   );
