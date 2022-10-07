@@ -20,3 +20,10 @@ export function getGenres() {
       });
   };
 }
+
+export function filterVideogamesByGenre(genre) {
+  return {
+    type: "FILTER_BY_GENRE",
+    payload: genre,
+  };
+}

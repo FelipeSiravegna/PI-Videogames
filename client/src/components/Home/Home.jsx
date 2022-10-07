@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getVideogames, getGenres } from "../../actions";
+import { getVideogames, getGenres, filterVideogamesByGenre } from "../../actions";
 import Card from "../Card/Card.jsx";
 import Paginado from "../Paginado/Paginado.jsx";
 import s from './Home.module.css'
@@ -36,6 +36,10 @@ export default function Home(){
         dispatch(getVideogames());
     }
 
+    const handleFilterGenre = (e) => {
+        dispatch(filterVideogamesByGenre(e.target.value));
+    }
+
     return(
         <div>
             <div className={s.ordenamientosYFiltros}>
@@ -61,12 +65,12 @@ export default function Home(){
                     {/* Por creador */}
                     <select>
                         <option default>All</option>
-                        <option value='Api'>Api videogames</option>
-                        <option value='Created'>User created videogames</option>
+                        <option value='false'>Api videogames</option>
+                        <option value='true'>User created videogames</option>
                     </select>
                     {/* Por género */}
-                    <select>
-                        <option default>All</option>
+                    <select onChange={e => handleFilterGenre(e)}>
+                        <option value='All' default>All</option>
                         {genres.map((g) => (
                             <option value={g.name}>{g.name}</option>
                         ))}
