@@ -112,7 +112,7 @@ router.get("/", async (req, res) => {
       let allGamesAPI = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
       //Traigo 120 juegos de la API
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 5; i++) {
         //En games almaceno la data
         let games = (await axios.get(allGamesAPI)).data;
 
