@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { getVideogames, getGenres } from "../../actions";
 import Card from "../Card/Card.jsx";
-// import s from './Home.module.css'
+import s from './Home.module.css'
 
 export default function Home(){
 
@@ -26,46 +26,53 @@ export default function Home(){
 
     return(
         <div>
-            <h1>Home</h1>
-            <button onClick={e => {handleClick(e)}}>
-                Reload videogames
-            </button>
-            {/* Ordenamientos */}
-            <div>
-                {/* Ordenamiento por orden alfabético */}   
-                <select>
-                    <option value='ascAlpha'>Alphabetically (A-Z)</option>
-                    <option value='descAlpha'>Alphabetically (Z-A)</option>
-                </select>
-                {/* Ordenamiento por rating */}   
-                <select>
-                    <option value='ascRating'>Rating (Higher-Lower)</option>
-                    <option value='descRating'>Rating (Lower-Higher)</option>
-                </select>
+            <div className={s.homeAndReload}>
+                <h1>Home</h1>
+                <button className={s.reloadButton} onClick={e => {handleClick(e)}}>
+                    Reload videogames
+                </button>
             </div>
-            {/* Filtros */}
-            <div>
-                {/* Por creador */}
-                <select>
-                    <option default>All</option>
-                    <option value='Api'>Api videogames</option>
-                    <option value='Created'>User created videogames</option>
-                </select>
-                {/* Por género */}
-                <select>
-                    <option default>All</option>
-                    {genres.map((g) => (
-                        <option value={g.name}>{g.name}</option>
-                    ))}
-                </select>
+            <div className={s.ordenamientosYFiltros}>
+                {/* Ordenamientos */}
+                <div className={s.ordenamientos}>
+                    {/* Ordenamiento por orden alfabético */}   
+                    <select>
+                        <option value='ascAlpha'>Alphabetically (A-Z)</option>
+                        <option value='descAlpha'>Alphabetically (Z-A)</option>
+                    </select>
+                    {/* Ordenamiento por rating */}   
+                    <select>
+                        <option value='ascRating'>Rating (Higher-Lower)</option>
+                        <option value='descRating'>Rating (Lower-Higher)</option>
+                    </select>
+                </div>
+                {/* Filtros */}
+                <div className={s.filtros}>
+                    {/* Por creador */}
+                    <select>
+                        <option default>All</option>
+                        <option value='Api'>Api videogames</option>
+                        <option value='Created'>User created videogames</option>
+                    </select>
+                    {/* Por género */}
+                    <select>
+                        <option default>All</option>
+                        {genres.map((g) => (
+                            <option value={g.name}>{g.name}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
-            {
-                allVideogames?.map((game) => {
-                    return (  
-                        <Card key={game.id} name={game.name} image={game.image} genres={game.genres} />
-                    );
-                })
-            }
+            
+            <div className={s.containerVideogameCards}>
+                {
+                    allVideogames?.map((game) => {
+                        return (  
+                                <Card className={s.card} key={game.id} name={game.name} image={game.image} genres={game.genres} />
+                        );
+                    })
+                }
+            </div>
         </div>
     )
 }

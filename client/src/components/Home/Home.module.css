@@ -1,0 +1,43 @@
+.containerVideogameCards{
+    display: grid;
+    gap: 10px;
+    row-gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    padding: 0px;
+}
+
+.ordenamientosYFiltros{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.homeAndReload{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.reloadButton{
+    margin-left: 45%;
+    width: 10%;
+    margin-bottom: 20px;
+}
+
+.ordenamientos{
+    display: flex;
+    gap: 10px;
+}
+
+.filtros{
+    display: flex;
+    gap: 10px;
+}
