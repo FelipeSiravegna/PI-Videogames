@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getVideogames, getGenres, filterVideogamesByGenre, filterByCreator, sortByName} from "../../actions";
+import { getVideogames, getGenres, filterVideogamesByGenre, filterByCreator, sortByName, sortByRating} from "../../actions";
 import Card from "../Card/Card.jsx";
 import Paginado from "../Paginado/Paginado.jsx";
 import s from './Home.module.css'
@@ -54,10 +54,11 @@ export default function Home(){
 
     const handleSortByRating = (e) => {
         e.preventDefault();
-
+        dispatch(sortByRating(e.target.value))
         setCurrentPage(1);
         setOrden(`Orden ${e.target.value}`)
     }
+
     return(
         <div>
             <div className={s.ordenamientosYFiltros}>
@@ -69,7 +70,7 @@ export default function Home(){
                         <option value='descAlpha'>Alphabetically (Z-A)</option>
                     </select>
                     {/* Ordenamiento por rating */}   
-                    <select>
+                    <select onChange={e => handleSortByRating(e)}>
                         <option value='ascRating'>Rating (Higher-Lower)</option>
                         <option value='descRating'>Rating (Lower-Higher)</option>
                     </select>
@@ -102,7 +103,7 @@ export default function Home(){
                 {
                     currentVideogames?.map((game) => {
                         return (  
-                                <Card className={s.card} key={game.id} name={game.name} image={game.image} genres={game.genres} />
+                                <Card className={s.card} key={game.id} name={game.name} image={game.image} genres={game.genres} rating={game.rating} />
                         );
                     })
                 }

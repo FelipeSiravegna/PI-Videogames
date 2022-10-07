@@ -12,6 +12,13 @@
     border-radius: 10px;
 }
 
+h4{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+}
+
 h3{
     display: flex;
     justify-content: center;

@@ -41,7 +41,7 @@ export default function rootReducer(state = initialState, action) {
           action.payload === "All" ? state.allVideogames : creatorFilter,
       };
     case "SORT_BY_NAME":
-      let sortedArray =
+      let sortedByNameArray =
         action.payload === "ascAlpha"
           ? state.videogames.sort(function (a, b) {
               if (a.name > b.name) {
@@ -63,9 +63,33 @@ export default function rootReducer(state = initialState, action) {
             });
       return {
         ...state,
-        videogames: sortedArray,
+        videogames: sortedByNameArray,
       };
-
+    case "SORT_BY_RATING":
+      let sortedByRating =
+        action.payload === "descRating"
+          ? state.videogames.sort(function (a, b) {
+              if (a.rating > b.rating) {
+                return 1;
+              }
+              if (b.rating > a.rating) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.videogames.sort(function (a, b) {
+              if (a.rating > b.rating) {
+                return -1;
+              }
+              if (b.rating > a.rating) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        videogames: sortedByRating,
+      };
     default:
       return { ...state };
   }

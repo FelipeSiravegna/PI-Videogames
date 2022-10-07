@@ -41,3 +41,10 @@ export function sortByName(payload) {
     payload: payload,
   };
 }
+
+export function sortByRating(payload) {
+  return {
+    type: "SORT_BY_RATING",
+    payload: payload,
+  };
+}
