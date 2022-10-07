@@ -19,15 +19,15 @@ router.get("/", async (req, res) => {
     if (name) {
       //Busco en la db un juego con el nombre que recibí
       let gamesDB = await Videogame.findOne({
-        where: { name: name },
+        where: { name: name.toLowerCase() },
         include: [Genre],
       });
 
-      //Si encontró algo creo un nuevo objeto al que le agrego la propiedad source para saber de donde fue obtenido
+      //Si encontró algo creo un nuevo objeto
       if (gamesDB) {
         gamesDBFull = {
           id: gamesDB.id,
-          name: gamesDB.name,
+          name: gamesDB.name[0].toUpperCase() + gamesDB.name.substring(1),
           image: gamesDB.image,
           rating: gamesDB.rating,
           createdByUser: gamesDB.createdByUser,
@@ -111,7 +111,7 @@ router.get("/", async (req, res) => {
       //Guardo el endpoint en una variable
       let allGamesAPI = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
-      //Traigo 120 juegos de la API
+      //Traigo juegos de la API
       for (let i = 0; i < 5; i++) {
         //En games almaceno la data
         let games = (await axios.get(allGamesAPI)).data;
@@ -151,7 +151,8 @@ router.get("/", async (req, res) => {
       let jsonGamesDB = gamesDB.map((g) => g.toJSON());
 
       jsonGamesDB.forEach((X) => {
-        (X.createdByUser = true),
+        (X.name = X.name[0].toUpperCase() + X.name.substring(1)),
+          (X.createdByUser = true),
           (X.genres = X.genres
             .map((genre) => genre.name)
             .filter((g) => g !== null)
