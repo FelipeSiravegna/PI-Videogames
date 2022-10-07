@@ -1,8 +1,9 @@
 import React from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { getVideogames, getGenres } from "../../actions";
 import Card from "../Card/Card.jsx";
+import Paginado from "../Paginado/Paginado.jsx";
 import s from './Home.module.css'
 
 export default function Home(){
@@ -12,6 +13,16 @@ export default function Home(){
     const allVideogames = useSelector((state) => state.videogames);
     //En genres almaceno todo lo que está en el state genres
     const genres = useSelector((state) => state.genres);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [videogamesPerPage, setVideogamesPerPage] = useState(15);
+    const indexOfLastVideogame = currentPage * videogamesPerPage; //15
+    const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage; // 0
+    const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+
+    const paginado = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
 
     //Cuando se monte el componente voy a despachar la action que trae todos los videogames
     useEffect(() => {
@@ -62,10 +73,12 @@ export default function Home(){
                     </select>
                 </div>
             </div>
-            
+
+            <Paginado videogamesPerPage={videogamesPerPage} allVideogames={allVideogames.length} paginado={paginado}/>
+
             <div className={s.containerVideogameCards}>
                 {
-                    allVideogames?.map((game) => {
+                    currentVideogames?.map((game) => {
                         return (  
                                 <Card className={s.card} key={game.id} name={game.name} image={game.image} genres={game.genres} />
                         );
