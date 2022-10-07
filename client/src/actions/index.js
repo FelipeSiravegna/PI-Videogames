@@ -35,9 +35,9 @@ export function filterByCreator(createdByUser) {
   };
 }
 
-export function orderByName(payload) {
+export function sortByName(payload) {
   return {
-    type: "ORDER_BY_NAME",
+    type: "SORT_BY_NAME",
     payload: payload,
   };
 }

@@ -40,7 +40,7 @@ export default function rootReducer(state = initialState, action) {
         videogames:
           action.payload === "All" ? state.allVideogames : creatorFilter,
       };
-    case "ORDER_BY_NAME":
+    case "SORT_BY_NAME":
       let sortedArray =
         action.payload === "ascAlpha"
           ? state.videogames.sort(function (a, b) {

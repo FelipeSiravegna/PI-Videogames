@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getVideogames, getGenres, filterVideogamesByGenre, filterByCreator, orderByName} from "../../actions";
+import { getVideogames, getGenres, filterVideogamesByGenre, filterByCreator, sortByName} from "../../actions";
 import Card from "../Card/Card.jsx";
 import Paginado from "../Paginado/Paginado.jsx";
 import s from './Home.module.css'
@@ -47,11 +47,17 @@ export default function Home(){
 
     const handleSortByName = (e) => {
         e.preventDefault();
-        dispatch(orderByName(e.target.value));
+        dispatch(sortByName(e.target.value));
         setCurrentPage(1);
         setOrden(`Orden ${e.target.value}`)
     }
 
+    const handleSortByRating = (e) => {
+        e.preventDefault();
+
+        setCurrentPage(1);
+        setOrden(`Orden ${e.target.value}`)
+    }
     return(
         <div>
             <div className={s.ordenamientosYFiltros}>
