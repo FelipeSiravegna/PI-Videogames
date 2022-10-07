@@ -38,7 +38,7 @@ const checkDB = async () => {
 };
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, async () => {
     console.log("%s listening at 3001", await checkDB()); // eslint-disable-line no-console
   });
