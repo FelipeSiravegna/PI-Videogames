@@ -29,6 +29,43 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         videogames: genreFiltered,
       };
+    case "FILTER_BY_CREATOR":
+      const allVideogames2 = state.allVideogames;
+      const creatorFilter =
+        action.payload === "false"
+          ? allVideogames2.filter((game) => game.createdByUser === false)
+          : allVideogames2.filter((game) => game.createdByUser === true);
+      return {
+        ...state,
+        videogames:
+          action.payload === "All" ? state.allVideogames : creatorFilter,
+      };
+    case "ORDER_BY_NAME":
+      let sortedArray =
+        action.payload === "ascAlpha"
+          ? state.videogames.sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.videogames.sort(function (a, b) {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (b.name > a.name) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        videogames: sortedArray,
+      };
+
     default:
       return { ...state };
   }

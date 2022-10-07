@@ -27,3 +27,17 @@ export function filterVideogamesByGenre(genre) {
     payload: genre,
   };
 }
+
+export function filterByCreator(createdByUser) {
+  return {
+    type: "FILTER_BY_CREATOR",
+    payload: createdByUser,
+  };
+}
+
+export function orderByName(payload) {
+  return {
+    type: "ORDER_BY_NAME",
+    payload: payload,
+  };
+}

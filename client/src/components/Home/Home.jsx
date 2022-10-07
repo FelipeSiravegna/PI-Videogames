@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getVideogames, getGenres, filterVideogamesByGenre } from "../../actions";
+import { getVideogames, getGenres, filterVideogamesByGenre, filterByCreator, orderByName} from "../../actions";
 import Card from "../Card/Card.jsx";
 import Paginado from "../Paginado/Paginado.jsx";
 import s from './Home.module.css'
@@ -19,6 +19,7 @@ export default function Home(){
     const indexOfLastVideogame = currentPage * videogamesPerPage; //15
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage; // 0
     const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+    const [orden, setOrden] = useState('');
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -40,13 +41,24 @@ export default function Home(){
         dispatch(filterVideogamesByGenre(e.target.value));
     }
 
+    const handleFilterByCreator = (e) => {
+        dispatch(filterByCreator(e.target.value));
+    }
+
+    const handleSortByName = (e) => {
+        e.preventDefault();
+        dispatch(orderByName(e.target.value));
+        setCurrentPage(1);
+        setOrden(`Orden ${e.target.value}`)
+    }
+
     return(
         <div>
             <div className={s.ordenamientosYFiltros}>
                 {/* Ordenamientos */}
                 <div className={s.ordenamientos}>
                     {/* Ordenamiento por orden alfabético */}   
-                    <select>
+                    <select onChange={e => handleSortByName(e)}>
                         <option value='ascAlpha'>Alphabetically (A-Z)</option>
                         <option value='descAlpha'>Alphabetically (Z-A)</option>
                     </select>
@@ -63,7 +75,7 @@ export default function Home(){
                 {/* Filtros */}
                 <div className={s.filtros}>
                     {/* Por creador */}
-                    <select>
+                    <select onChange={e => handleFilterByCreator(e)}>
                         <option default>All</option>
                         <option value='false'>Api videogames</option>
                         <option value='true'>User created videogames</option>
