@@ -28,9 +28,6 @@ export default function Home(){
         <div>
             <div className={s.homeAndReload}>
                 <h1>Home</h1>
-                <button className={s.reloadButton} onClick={e => {handleClick(e)}}>
-                    Reload videogames
-                </button>
             </div>
             <div className={s.ordenamientosYFiltros}>
                 {/* Ordenamientos */}
@@ -46,6 +43,10 @@ export default function Home(){
                         <option value='descRating'>Rating (Lower-Higher)</option>
                     </select>
                 </div>
+                {/* Reload button */}
+                <button onClick={e => {handleClick(e)}}>
+                    Reload videogames
+                </button>
                 {/* Filtros */}
                 <div className={s.filtros}>
                     {/* Por creador */}
