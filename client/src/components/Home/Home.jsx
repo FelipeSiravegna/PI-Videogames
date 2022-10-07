@@ -15,7 +15,8 @@ export default function Home(){
 
     //Cuando se monte el componente voy a despachar la action que trae todos los videogames
     useEffect(() => {
-        dispatch(getVideogames(), getGenres());
+        dispatch(getVideogames());
+        dispatch(getGenres());
     }, [dispatch])
 
     //Función que vuelve a pedír todos los videojuegos en caso de querer "resetear" la página
@@ -26,9 +27,6 @@ export default function Home(){
 
     return(
         <div>
-            <div className={s.homeAndReload}>
-                <h1>Home</h1>
-            </div>
             <div className={s.ordenamientosYFiltros}>
                 {/* Ordenamientos */}
                 <div className={s.ordenamientos}>
