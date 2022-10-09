@@ -18,21 +18,25 @@ router.get("/", async (req, res) => {
     //Traer juegos que contengan name tanto de la db como de la api
     if (name) {
       //Busco en la db un juego con el nombre que recibí
-      let gamesDB = await Videogame.findOne({
+      let gamesDB = await Videogame.findAll({
         where: { name: name.toLowerCase() },
         include: [Genre],
       });
 
       //Si encontró algo creo un nuevo objeto
-      if (gamesDB) {
-        gamesDBFull = {
-          id: gamesDB.id,
-          name: gamesDB.name[0].toUpperCase() + gamesDB.name.substring(1),
-          image: gamesDB.image,
-          rating: gamesDB.rating,
-          createdByUser: gamesDB.createdByUser,
-          genres: gamesDB.genres.map((genre) => genre.name).join(", "),
-        };
+      if (gamesDB.length > 0) {
+        gamesDBFull = gamesDB.map((game) => {
+          let gameDB = {
+            id: game.id,
+            name: game.name[0].toUpperCase() + game.name.substring(1),
+            image: game.image,
+            rating: game.rating,
+            createdByUser: game.createdByUser,
+            genres: game.genres.map((genre) => genre.name).join(", "),
+          };
+
+          return gameDB;
+        });
 
         //Traigo de la API los 15 juegos que coincidan con la palabra ingresada por query
         let gamesAPI = await axios.get(
