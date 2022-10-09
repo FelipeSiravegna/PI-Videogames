@@ -18,11 +18,11 @@ export default function rootReducer(state = initialState, action) {
         genres: action.payload,
       };
     case "FILTER_BY_GENRE":
-      const allVideogames = state.allVideogames;
+      const allVideogamesFBG = state.allVideogames;
       const genreFiltered =
         action.payload === "All"
-          ? allVideogames
-          : allVideogames.filter((game) =>
+          ? allVideogamesFBG
+          : allVideogamesFBG.filter((game) =>
               game.genres.includes(action.payload)
             );
       return {
@@ -30,11 +30,11 @@ export default function rootReducer(state = initialState, action) {
         videogames: genreFiltered,
       };
     case "FILTER_BY_CREATOR":
-      const allVideogames2 = state.allVideogames;
+      const allVideogamesFBC = state.allVideogames;
       const creatorFilter =
         action.payload === "false"
-          ? allVideogames2.filter((game) => game.createdByUser === false)
-          : allVideogames2.filter((game) => game.createdByUser === true);
+          ? allVideogamesFBC.filter((game) => game.createdByUser === false)
+          : allVideogamesFBC.filter((game) => game.createdByUser === true);
       return {
         ...state,
         videogames:
@@ -67,22 +67,22 @@ export default function rootReducer(state = initialState, action) {
       };
     case "SORT_BY_RATING":
       let sortedByRating =
-        action.payload === "descRating"
+        action.payload === "ascRating"
           ? state.videogames.sort(function (a, b) {
               if (a.rating > b.rating) {
-                return 1;
+                return -1;
               }
               if (b.rating > a.rating) {
-                return -1;
+                return 1;
               }
               return 0;
             })
           : state.videogames.sort(function (a, b) {
               if (a.rating > b.rating) {
-                return -1;
+                return 1;
               }
               if (b.rating > a.rating) {
-                return 1;
+                return -1;
               }
               return 0;
             });

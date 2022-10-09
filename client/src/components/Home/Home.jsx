@@ -66,11 +66,13 @@ export default function Home(){
                 <div className={s.ordenamientos}>
                     {/* Ordenamiento por orden alfabético */}   
                     <select onChange={e => handleSortByName(e)}>
+                        <option default>Sort by name</option>
                         <option value='ascAlpha'>Alphabetically (A-Z)</option>
                         <option value='descAlpha'>Alphabetically (Z-A)</option>
                     </select>
                     {/* Ordenamiento por rating */}   
                     <select onChange={e => handleSortByRating(e)}>
+                        <option default>Sort by rating</option>
                         <option value='ascRating'>Rating (Higher-Lower)</option>
                         <option value='descRating'>Rating (Lower-Higher)</option>
                     </select>
