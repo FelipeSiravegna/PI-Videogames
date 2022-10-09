@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import s from './Searchbar.module.css'
-import { getNameCharacters } from "../../actions";
+import { getNameVideogames } from "../../actions/index";
 import { NavLink } from "react-router-dom";
 
 export default function Searchbar(){
@@ -16,7 +16,7 @@ export default function Searchbar(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(getNameCharacters(name));
+        dispatch(getNameVideogames(name));
         setName('');
     }
 
