@@ -90,6 +90,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         videogames: sortedByRating,
       };
+    case "GET_NAME_CHARACTERS":
+      return {
+        ...state,
+        videogames: action.payload,
+      };
     default:
       return { ...state };
   }

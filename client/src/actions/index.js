@@ -4,6 +4,9 @@ export function getVideogames() {
       .then((response) => response.json())
       .then((json) => {
         dispatch({ type: "GET_VIDEOGAMES", payload: json });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 }
@@ -17,6 +20,25 @@ export function getGenres() {
           type: "GET_GENRES",
           payload: json,
         });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function getNameCharacters(name) {
+  return (dispatch) => {
+    fetch(`http://localhost:3001/videogames?name=${name}`)
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch({
+          type: "GET_NAME_CHARACTERS",
+          payload: json,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 }

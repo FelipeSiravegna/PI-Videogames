@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-// import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import s from './Searchbar.module.css'
-// import { searchVideogame } from "../../actions";
+import { getNameCharacters } from "../../actions";
+import { NavLink } from "react-router-dom";
 
-export default function Searchbar(props){
+export default function Searchbar(){
 
-    const [videogameName, setVideogameName] = useState('');
+    const dispatch = useDispatch();
+    const [name, setName] = useState('');
 
-    //Cada vez que se haga un cambio en el input se modifica el valor del state
-    const handleChange = (e) => {
-        let game = e.target.value;
-        setVideogameName(game);
+    const handleInputChange = (e) => {
+        e.preventDefault();
+        setName(e.target.value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(getNameCharacters(name));
+        setName('');
     }
 
     return(
@@ -23,40 +29,14 @@ export default function Searchbar(props){
                 <h3>Create</h3>
             </NavLink>
             <form 
-                // onSubmit={handleSubmit} 
                 className={s.searchbarForm}>
                 <input 
                     type='text' 
-                    value={videogameName}
-                    onChange={handleChange} 
+                    onChange={(e) => handleInputChange(e)} 
                     placeholder='Search...'
                 />
-                {/* Cuando clickeo el botón me redirige a la página de búsqueda de un videojuego */}
-                <NavLink to={`/videogames?name=${videogameName}`} >
-                    <button className={s.searchbarButton}>Search</button>
-                </NavLink>
+                <button className={s.searchbarButton} onClick={(e) => handleSubmit(e)}>Search</button>
             </form>
         </div>
     )
 }
-
-// //-----------------------------------------------------
-// //ARREGLAR
-// //-----------------------------------------------------
-
-// //En this.props.search se encuentran todos los videogames de la búsqueda
-// function mapStateToProps(state){
-//     return{
-//         //this.props.search = store.getState().videogameSearch
-//         search: state.videogameSearch
-//     }
-// }
-
-// function mapDispatchToProps(dispatch){
-//     return{
-//         //searchVideogame recibe un nombre de videogame y despacha la action
-//         searchVideogame: videogameName => dispatch(searchVideogame(videogameName))
-//     }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);
