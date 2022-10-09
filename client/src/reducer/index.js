@@ -90,10 +90,14 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         videogames: sortedByRating,
       };
-    case "GET_NAME_CHARACTERS":
+    case "GET_NAME_VIDEOGAMES":
       return {
         ...state,
         videogames: action.payload,
+      };
+    case "POST_VIDEOGAME":
+      return {
+        ...state,
       };
     default:
       return { ...state };

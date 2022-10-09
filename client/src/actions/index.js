@@ -1,3 +1,4 @@
+import axios from "axios";
 export function getVideogames() {
   return (dispatch) => {
     fetch(`http://localhost:3001/videogames`)
@@ -27,19 +28,29 @@ export function getGenres() {
   };
 }
 
-export function getNameCharacters(name) {
+export function getNameVideogames(name) {
   return (dispatch) => {
     fetch(`http://localhost:3001/videogames?name=${name}`)
       .then((response) => response.json())
       .then((json) => {
         dispatch({
-          type: "GET_NAME_CHARACTERS",
+          type: "GET_NAME_VIDEOGAMES",
           payload: json,
         });
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+}
+
+export function postVideogame(payload) {
+  return async (dispatch) => {
+    const response = await axios.post(
+      `http://localhost:3001/videogame`,
+      payload
+    );
+    return response;
   };
 }
 
