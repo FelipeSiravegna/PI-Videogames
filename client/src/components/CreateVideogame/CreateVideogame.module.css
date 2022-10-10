@@ -12,10 +12,14 @@
 }
 
 .platformLabelsContainer{
+    display: flex;
+    width: 20%;
     margin: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
+
+}
+
+.select{
+    width: 100%;
 }
 
 .createButton{
@@ -24,4 +28,15 @@
 
 .labels{
     margin: 5px;
+}
+
+.error{
+    color: red;
+}
+
+.platformsAndGenresSelected{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 10px;
 }

@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from "react";
-import {NavLink, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {getGenres, postVideogame} from '../../actions'
+import {useHistory} from 'react-router-dom';
+import {getGenres, postVideogame, getVideogames} from '../../actions'
 import s from './CreateVideogame.module.css'
 
 export default function CreateVideogame(){
     const dispatch = useDispatch();
+    const history = useHistory();
     const genres = useSelector(state => state.genres);
+    const allVideogames = useSelector(state => state.videogames);
+
     const [input, setInput] = useState({
         name: '',
         createdByUser: true,
@@ -21,7 +24,11 @@ export default function CreateVideogame(){
     //Cuando se monte el component se ejecuta el dispatch
     useEffect(() => {
         dispatch(getGenres());
-    }, [])
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getVideogames());
+    }, [dispatch])
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -29,23 +36,60 @@ export default function CreateVideogame(){
             ...input,
             [e.target.name] : e.target.value
         })
+        console.log(input)
     }
 
-    const handleCheckbox = (e) => {
-        if(e.target.checked){
-            setInput({
-                ...input,
-                platforms: [...new Set([...input.platforms, e.target.value])],
-                genres: [...new Set([...input.genres, e.target.value])]
-            })
-        }
+    const handleSelectGenres = (e) => {
+        setInput({
+            ...input,
+            genres: [...new Set([...input.genres, e.target.value])]
+        })
     }
+
+    const handleSelectPlatforms = (e) => {
+        setInput({
+            ...input,
+            platforms: [...new Set([...input.platforms, e.target.value])]
+        })
+    }
+
+    const handleGenresDelete = (e) => {
+        setInput({
+            ...input,
+            genres: input.genres.filter(genre => genre !== e)
+        })
+    }
+
+    const handlePlatformsDelete = (e) => {
+        setInput({
+            ...input,
+            platforms: input.platforms.filter(platform => platform !== e)
+        })
+    }
+
+    const regexRating = /[+-]?([0-9]*[.])?\b[0-5]{1,1}\b/; //regex 1-5 decimal inclusive
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(input);
+
+        if(!input.name){
+            return alert('Name is required');
+        } else if(!input.description){
+            return alert('Description is required');
+        } else if(!input.releaseDate){
+            return alert('Release date is required');
+        } else if(!regexRating.test(input.rating)){
+            return alert('Enter a rating between 1 and 5');
+        } else if(!input.platforms.length){
+            return alert('At least one platform is required');
+        } else if(!input.genres.length){
+            return alert('At least one genre is required');
+        }
+
         dispatch(postVideogame(input));
-        alert('Videogame created!')
+
+        alert('Videogame created successfully!');
+
         setInput({
             name: '',
             createdByUser: true,
@@ -56,65 +100,103 @@ export default function CreateVideogame(){
             platforms: [],
             genres: []
         })
+
+        history.push('/home');
     }
+
+    //Creo set de platforms
+    const platformsArray = [];
+    allVideogames.map(game => game.platforms?.map(platform => platformsArray.push(platform)));
+    let platformsSet = [...new Set(platformsArray)];
+
 
     return(
         <div >
-            <form className={s.formContainer}>
+            <form className={s.formContainer} onSubmit={(e) => handleSubmit(e)}>
+                {/* Name */}
                 <label className={s.labels}>Name: </label>
                 <div>
-                    <input type='text'  name='name' onChange={(e) => handleChange(e)}></input>
+                    <input type='text' name='name' onChange={(e) => handleChange(e)}></input>
                 </div>
+                {/* Description */}
                 <label className={s.labels}>Description: </label>
                 <div>
-                    <input type='text'  name='description' onChange={(e) => handleChange(e)}></input>
+                    <input type='text' name='description' onChange={(e) => handleChange(e)}></input>
                 </div>
+                {/* Image */}
                 <label className={s.labels}>Image: </label>
                 <div>
-                    <input type='text'  name='image' onChange={(e) => handleChange(e)} placeholder='URL' ></input>
+                    <input type='text' name='image' onChange={(e) => handleChange(e)} placeholder='URL' ></input>
                 </div>
+                {/* Release date */}
                 <label className={s.labels}>Release date: </label>
                 <div>
-                    <input type='date'  name='releaseDate' onChange={(e) => handleChange(e)}></input>
+                    <input type='date' name='releaseDate' onChange={(e) => handleChange(e)}></input>
                 </div>
+                {/* Rating */}
                 <label className={s.labels}>Rating: </label>
                 <div>
                     <input type='number' name='rating' onChange={(e) => handleChange(e)} placeholder='1 - 5'></input>
                 </div>
+                {/* Platforms */} 
                 <label className={s.labels}>Platforms: </label>
                 <div className={s.platformLabelsContainer}>
-                    <label><input type='checkbox' value='PC' onChange={(e) => handleCheckbox(e)}/>PC</label>
-                    <label><input type='checkbox' value='PS Vita' onChange={(e) => handleCheckbox(e)}/>PS Vita</label>
-                    <label><input type='checkbox' value='PS1' onChange={(e) => handleCheckbox(e)}/>PS1</label>
-                    <label><input type='checkbox' value='PS2' onChange={(e) => handleCheckbox(e)}/>PS2</label>
-                    <label><input type='checkbox' value='PS3' onChange={(e) => handleCheckbox(e)}/>PS3</label>
-                    <label><input type='checkbox' value='PS4' onChange={(e) => handleCheckbox(e)}/>PS4</label>
-                    <label><input type='checkbox' value='PS5' onChange={(e) => handleCheckbox(e)}/>PS5</label>
-                    <label><input type='checkbox' value='XBox' onChange={(e) => handleCheckbox(e)}/>XBox</label>
-                    <label><input type='checkbox' value='XBox 360' onChange={(e) => handleCheckbox(e)}/>XBox 360</label>
-                    <label><input type='checkbox' value='XBox ONE' onChange={(e) => handleCheckbox(e)}/>XBox ONE</label>
-                    <label><input type='checkbox' value='XBox Series S/X' onChange={(e) => handleCheckbox(e)}/>XBox Series S/X</label>
-                    <label><input type='checkbox' value='Android' onChange={(e) => handleCheckbox(e)}/>Android</label>
-                    <label><input type='checkbox' value='Linux' onChange={(e) => handleCheckbox(e)}/>Linux</label>
-                    <label><input type='checkbox' value='iOs' onChange={(e) => handleCheckbox(e)}/>iOs</label>
-                    <label><input type='checkbox' value='macOS' onChange={(e) => handleCheckbox(e)}/>macOS</label>
-                    <label><input type='checkbox' value='Wii' onChange={(e) => handleCheckbox(e)}/>Wii</label>
-                    <label><input type='checkbox' value='Wii U' onChange={(e) => handleCheckbox(e)}/>Wii U</label>
-                    <label><input type='checkbox' value='Nintendo switch' onChange={(e) => handleCheckbox(e)}/>Nintendo switch</label>
+                    <select className={s.select} onChange={(e) => handleSelectPlatforms(e)}>
+                        <option value='Platforms'>Platforms</option>
+                        {
+                            platformsSet.map(platform => (
+                                <option key={platform} value={platform}>{platform}</option>
+                            ))
+                        }
+                    </select>
                 </div>
+                {/* Genres */}
                 <label className={s.labels}>Genres: </label>
                 <div className={s.platformLabelsContainer}>
-                        {genres.map((genre) => (
-                            <label><input type='checkbox' value={genre.name} name={genre.name} onChange={(e) => handleCheckbox(e)} key={genre.name}/>{genre.name}</label>
-                        ))}
-                    
+                    <select className={s.select} onChange={(e) => handleSelectGenres(e)}>
+                        <option value='Genres'>Genres</option>
+                        {
+                            genres.map(genre => (
+                                <option key={genre.id} value={genre.name}>{genre.name}</option>
+                            ))
+                        }
+                    </select>
                 </div>
                 <div className={s.createButton}>
-                    <button onClick={(e) => handleSubmit(e)}>
+                    <button type='submit'>
                         Create videogame
-                    </button>
+                    </button>                    
                 </div>
+                <div className={s.platformsAndGenresSelected}>
+                <div>    
+                    {/* Genres container */}
+                    <h3>Genres selected:</h3>
+                    <div>
+                        {
+                            input.genres.map(genre => (
+                                <div>
+                                    <p onClick={() => handleGenresDelete(genre)}>{genre}</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div>
+                    {/* Platforms container */}
+                    <h3>Platforms selected:</h3>
+                    <div>
+                        {
+                            input.platforms.map(platform => (
+                                <div>
+                                    <p onClick={() => handlePlatformsDelete(platform)}>{platform}</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
             </form>
+            
         </div>
     )
 }
