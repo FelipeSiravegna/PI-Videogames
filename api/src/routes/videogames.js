@@ -33,6 +33,7 @@ router.get("/", async (req, res) => {
             rating: game.rating,
             createdByUser: game.createdByUser,
             genres: game.genres.map((genre) => genre.name).join(", "),
+            platforms: game.platforms,
           };
 
           return gameDB;
@@ -59,6 +60,7 @@ router.get("/", async (req, res) => {
                 .map((genre) => genre.name)
                 .filter((genre) => genre !== null)
                 .join(", "),
+            platforms: g.platforms && g.platforms.map((p) => p.platform.name),
           };
 
           //Devuelvo game
@@ -93,6 +95,7 @@ router.get("/", async (req, res) => {
                 .map((genre) => genre.name)
                 .filter((genre) => genre !== null)
                 .join(", "),
+            platforms: g.platforms && g.platforms.map((p) => p.platform.name),
           };
 
           //Devuelvo game
@@ -135,6 +138,7 @@ router.get("/", async (req, res) => {
                 .map((genre) => genre.name)
                 .filter((genre) => genre !== null)
                 .join(", "),
+            platforms: g.platforms && g.platforms.map((p) => p.platform.name),
           };
 
           //Devuelvo game
@@ -160,7 +164,8 @@ router.get("/", async (req, res) => {
           (X.genres = X.genres
             .map((genre) => genre.name)
             .filter((g) => g !== null)
-            .join(", "));
+            .join(", ")),
+          (X.platforms = X.platforms.map((platform) => platform));
       });
 
       //Concateno a gameResulst los juegos de la api
