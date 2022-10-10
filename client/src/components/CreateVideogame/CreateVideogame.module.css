@@ -1,0 +1,27 @@
+.formContainer{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.platformLabelsContainer{
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.createButton{
+    margin: 10px;
+}
+
+.labels{
+    margin: 5px;
+}

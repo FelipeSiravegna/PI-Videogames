@@ -59,31 +59,30 @@ export default function CreateVideogame(){
     }
 
     return(
-        <div>
-            <h1>Create A Videogame</h1>
-            <form >
+        <div >
+            <form className={s.formContainer}>
+                <label className={s.labels}>Name: </label>
                 <div>
-                    <label>Nombre: </label>
                     <input type='text'  name='name' onChange={(e) => handleChange(e)}></input>
                 </div>
+                <label className={s.labels}>Description: </label>
                 <div>
-                    <label>Description: </label>
                     <input type='text'  name='description' onChange={(e) => handleChange(e)}></input>
                 </div>
+                <label className={s.labels}>Image: </label>
                 <div>
-                    <label>Image: </label>
                     <input type='text'  name='image' onChange={(e) => handleChange(e)} placeholder='URL' ></input>
                 </div>
+                <label className={s.labels}>Release date: </label>
                 <div>
-                    <label>Release date: </label>
                     <input type='date'  name='releaseDate' onChange={(e) => handleChange(e)}></input>
                 </div>
+                <label className={s.labels}>Rating: </label>
                 <div>
-                    <label>Rating: </label>
                     <input type='number' name='rating' onChange={(e) => handleChange(e)} placeholder='1 - 5'></input>
                 </div>
-                <div>
-                    <label>Platforms: </label>
+                <label className={s.labels}>Platforms: </label>
+                <div className={s.platformLabelsContainer}>
                     <label><input type='checkbox' value='PC' onChange={(e) => handleCheckbox(e)}/>PC</label>
                     <label><input type='checkbox' value='PS Vita' onChange={(e) => handleCheckbox(e)}/>PS Vita</label>
                     <label><input type='checkbox' value='PS1' onChange={(e) => handleCheckbox(e)}/>PS1</label>
@@ -103,16 +102,18 @@ export default function CreateVideogame(){
                     <label><input type='checkbox' value='Wii U' onChange={(e) => handleCheckbox(e)}/>Wii U</label>
                     <label><input type='checkbox' value='Nintendo switch' onChange={(e) => handleCheckbox(e)}/>Nintendo switch</label>
                 </div>
-                <div>
-                    <label>Genres: </label>
+                <label className={s.labels}>Genres: </label>
+                <div className={s.platformLabelsContainer}>
                         {genres.map((genre) => (
                             <label><input type='checkbox' value={genre.name} name={genre.name} onChange={(e) => handleCheckbox(e)} key={genre.name}/>{genre.name}</label>
                         ))}
                     
                 </div>
-                <button onClick={(e) => handleSubmit(e)}>
-                    Create videogame
-                </button>
+                <div className={s.createButton}>
+                    <button onClick={(e) => handleSubmit(e)}>
+                        Create videogame
+                    </button>
+                </div>
             </form>
         </div>
     )
