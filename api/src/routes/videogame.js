@@ -26,6 +26,7 @@ router.get("/:id", async (req, res) => {
       let newDescription = juego.description.slice(3, -4);
       newDescription = newDescription.replaceAll("<p>", "");
       newDescription = newDescription.replaceAll("</p>", "");
+      newDescription = newDescription.replaceAll("<br/>", "");
 
       //Creo un juego con toda la información que contiene gameDB (ahora almacenado en juego)
       const gameDetails = {
@@ -55,6 +56,7 @@ router.get("/:id", async (req, res) => {
 
       let newDescription = juego.description.slice(3, -4);
       newDescription = newDescription.replaceAll("<p>", "");
+      newDescription = newDescription.replaceAll("<br />", "");
       newDescription = newDescription.replaceAll("</p>", "");
 
       //Creo un juego con la info que trae la API (ahora almacenada en juego)
