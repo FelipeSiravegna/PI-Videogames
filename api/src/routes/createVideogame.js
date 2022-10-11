@@ -3,7 +3,6 @@ const router = express.Router();
 const { Genre, Videogame } = require("../db");
 
 router.post("/", async (req, res) => {
-  //Agarro la info desde el body
   const { name, description, image, releaseDate, rating, platforms, genres } =
     req.body;
 
@@ -16,7 +15,6 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    //Creo un nuevo juego en la DB con los datos que recibí del formulario
     const newGame = await Videogame.create({
       name: name,
       createdByUser: true,
@@ -35,7 +33,7 @@ router.post("/", async (req, res) => {
 
     res.send("Videogame created successfully!");
   } catch (e) {
-    res.send(e.message);
+    res.status(404).send(e.message);
   }
 });
 

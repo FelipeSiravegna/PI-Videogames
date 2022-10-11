@@ -43,7 +43,6 @@ router.get("/:id", async (req, res) => {
         updatedAt: juego.updatedAt,
       };
 
-      //Devuelvo el juego
       res.json(gameDetails);
     } else {
       //Si no está en la DB lo traigo desde la API
@@ -76,11 +75,9 @@ router.get("/:id", async (req, res) => {
           .join(", "),
       };
 
-      //Devuelvo el juego creado
       return res.json(gameDetails);
     }
   } catch (e) {
-    //En caso de no encontrarse el juego devuelve el siguiente error
     res.status(404).json({ error: "No se encontró el ID" });
   }
 });
