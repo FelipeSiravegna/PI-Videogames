@@ -34,8 +34,9 @@ export default function Searchbar(){
                     type='text' 
                     onChange={(e) => handleInputChange(e)} 
                     placeholder='Search...'
+                    className={s.inputSearchbar}
                 />
-                <button className={s.searchbarButton} onClick={(e) => handleSubmit(e)}>Search</button>
+                <button className={s.searchbarButton} onClick={(e) => handleSubmit(e)}>GO!</button>
             </form>
         </div>
     )

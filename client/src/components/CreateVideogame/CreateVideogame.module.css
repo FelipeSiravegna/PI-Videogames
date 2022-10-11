@@ -7,7 +7,8 @@
     justify-content: center;
     align-items: center;
     width: 80%;
-    background-color: white;
+    background-color: #22223B;
+    border: 3px solid white;
     border-radius: 10px;
 }
 
@@ -20,14 +21,22 @@
 
 .select{
     width: 100%;
+    border-radius: 10px;
 }
 
 .createButton{
     margin: 10px;
+    width: 100px;
+    background-color: white;
+    border-radius: 10px;
+    font-family: Monaco;
 }
 
 .labels{
-    margin: 5px;
+    margin: 8px;
+    color: white;
+    font-family: Monaco;
+
 }
 
 .error{
@@ -39,8 +48,21 @@
     justify-content: center;
     gap: 50px;
     margin: 10px;
+    color: white;
+}
+
+.deleteGenreOrPlatform{
+    font-family: Monaco;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .deleteGenreOrPlatform:hover{
     cursor: pointer;
+}
+
+.formInput{
+    border-radius: 10px;
+    height: 20px;
 }

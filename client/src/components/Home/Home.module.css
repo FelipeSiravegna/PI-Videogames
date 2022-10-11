@@ -12,12 +12,17 @@
     padding: 0px;
 }
 
+.background{
+    background-image: url('../LandingPage/1605.m00.i104.n037.S.c12.Isometric_3D_game_play_scene_vector-removebg-preview.png');
+    height: 900px;
+}
+
 .ordenamientosYFiltros{
     display: flex;
     text-align: center;
     justify-content: center;
     flex-direction: row;
-    gap: 10px;
+    gap: 25px;
     margin-top: 20px;
 }
 
@@ -32,7 +37,10 @@
     font-family: Monaco;
     border: 2px solid white;
     color: white;
+}
 
+.selectSortingOrFilter:hover{
+    cursor: pointer;
 }
 
 .reloadButton{
@@ -45,12 +53,15 @@
     color: white;
 }
 
+.reloadButton:hover{
+    cursor: pointer;
+}
 .ordenamientos{
     display: flex;
-    gap: 10px;
+    gap: 25px;
 }
 
 .filtros{
     display: flex;
-    gap: 10px;
+    gap: 25px;
 }

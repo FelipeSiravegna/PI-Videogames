@@ -34,5 +34,17 @@
 
 .searchbarButton{
     height: 30px;
+    font-family: Monaco;
+    width: 50px;
+    border-radius: 10px;
 }
 
+.searchbarButton:hover{
+    cursor: pointer;
+}
+
+.inputSearchbar{
+    border-radius: 10px;
+    font-family: Monaco;
+    width: 130px
+}

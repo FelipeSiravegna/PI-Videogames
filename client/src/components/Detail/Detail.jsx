@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDetail} from '../../actions';
-// import s from './Detail.module.css'
+import s from './Detail.module.css'
 
 export default function Detail(props){
     const dispatch = useDispatch();
@@ -18,14 +18,14 @@ export default function Detail(props){
         <div>
             {
                 videogame?
-                <div>
-                    <h1>{videogame.name}</h1>
-                    <img src={videogame.image}></img>
-                    <h4>Description: {videogame.description}</h4>
-                    <h4>Rating: {videogame.rating}</h4>
-                    <h5>Genres: {videogame.genres}</h5>
-                    <h5>Release date: {videogame.releaseDate}</h5>
-                    <h5>Platforms: {videogame.platforms}</h5>
+                <div className={s.container}>
+                    <h1 className={s.title}>{videogame.name}</h1>
+                    <img className={s.imgDetail} src={videogame.image}></img>
+                    <h4 className={s.description}>{videogame.description}</h4>
+                    <h4 className={s.texts}>RATING: {videogame.rating}</h4>
+                    <h5 className={s.texts}>GENRES: {videogame.genres}</h5>
+                    <h5 className={s.texts}>RELEASE DATE: {videogame.releaseDate}</h5>
+                    <h5 className={s.texts}>PLATFORMS: {videogame.platforms}</h5>
                 </div>
                 :
                 <div>
@@ -33,7 +33,7 @@ export default function Detail(props){
                 </div>
             }
             <Link to='/home'>
-                <button>Go back</button>
+                <button className={s.backButton}>GO BACK</button>
             </Link>
         </div>
     )

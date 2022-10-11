@@ -67,7 +67,7 @@ export default function CreateVideogame(){
         })
     }
 
-    const regexRating = /[+-]?([0-9]*[.])?\b[0-5]{1,1}\b/; //regex 1-5 decimal inclusive
+    const regexRating = /[+-]?([0-9]*[.])?\b[1-5]{1,1}\b/; //regex 1-5
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -78,7 +78,7 @@ export default function CreateVideogame(){
             return alert('Description is required');
         } else if(!input.releaseDate){
             return alert('Release date is required');
-        } else if(!regexRating.test(input.rating)){
+        } else if(!input.rating || input.rating < 1 || input.rating > 5){
             return alert('Enter a rating between 1 and 5');
         } else if(!input.platforms.length){
             return alert('At least one platform is required');
@@ -114,35 +114,34 @@ export default function CreateVideogame(){
         <div >
             <form className={s.formContainer} onSubmit={(e) => handleSubmit(e)}>
                 {/* Name */}
-                <label className={s.labels}>Name: </label>
+                <label className={s.labels}>NAME: </label>
                 <div>
-                    <input type='text' name='name' onChange={(e) => handleChange(e)}></input>
+                    <input className={s.formInput} type='text' name='name' onChange={(e) => handleChange(e)}></input>
                 </div>
                 {/* Description */}
-                <label className={s.labels}>Description: </label>
+                <label className={s.labels}>DESCRIPTION: </label>
                 <div>
-                    <input type='text' name='description' onChange={(e) => handleChange(e)}></input>
+                    <input className={s.formInput} type='text' name='description' onChange={(e) => handleChange(e)}></input>
                 </div>
                 {/* Image */}
-                <label className={s.labels}>Image: </label>
+                <label className={s.labels}>IMAGE: </label>
                 <div>
-                    <input type='text' name='image' onChange={(e) => handleChange(e)} placeholder='URL' ></input>
+                    <input className={s.formInput} type='text' name='image' onChange={(e) => handleChange(e)} placeholder='URL' ></input>
                 </div>
                 {/* Release date */}
-                <label className={s.labels}>Release date: </label>
+                <label className={s.labels}>RELEASE DATE: </label>
                 <div>
-                    <input type='date' name='releaseDate' onChange={(e) => handleChange(e)}></input>
+                    <input className={s.formInput} type='date' name='releaseDate' onChange={(e) => handleChange(e)}></input>
                 </div>
                 {/* Rating */}
-                <label className={s.labels}>Rating: </label>
+                <label className={s.labels}>RATING: </label>
                 <div>
-                    <input type='number' name='rating' onChange={(e) => handleChange(e)} placeholder='1 - 5'></input>
+                    <input className={s.formInput} type='number' name='rating' onChange={(e) => handleChange(e)} placeholder='1 - 5'></input>
                 </div>
                 {/* Platforms */} 
-                <label className={s.labels}>Platforms: </label>
+                <label className={s.labels}>PLATFORMS: </label>
                 <div className={s.platformLabelsContainer}>
                     <select className={s.select} onChange={(e) => handleSelectPlatforms(e)}>
-                        <option value='Platforms'>Platforms</option>
                         {
                             platformsSet.map(platform => (
                                 <option key={platform} value={platform}>{platform}</option>
@@ -151,10 +150,9 @@ export default function CreateVideogame(){
                     </select>
                 </div>
                 {/* Genres */}
-                <label className={s.labels}>Genres: </label>
+                <label className={s.labels}>GENRES: </label>
                 <div className={s.platformLabelsContainer}>
                     <select className={s.select} onChange={(e) => handleSelectGenres(e)}>
-                        <option value='Genres'>Genres</option>
                         {
                             genres.map(genre => (
                                 <option key={genre.id} value={genre.name}>{genre.name}</option>
@@ -162,39 +160,39 @@ export default function CreateVideogame(){
                         }
                     </select>
                 </div>
-                <div className={s.createButton}>
-                    <button type='submit'>
-                        Create videogame
+                <div className={s.platformsAndGenresSelected}>
+                    <div className={s.genresContainer}>    
+                        {/* Genres container */}
+                        <h3>GENRES SELECTED:</h3>
+                        <div>
+                            {
+                                input.genres.map(genre => (
+                                    <div>
+                                        <p className={s.deleteGenreOrPlatform} onClick={() => handleGenresDelete(genre)}>{genre}</p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        {/* Platforms container */}
+                        <h3>PLATFORMS SELECTED:</h3>
+                        <div>
+                            {
+                                input.platforms.map(platform => (
+                                    <div>
+                                        <p className={s.deleteGenreOrPlatform} onClick={() => handlePlatformsDelete(platform)}>{platform}</p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div >
+                    <button className={s.createButton} type='submit'>
+                        CREATE
                     </button>                    
                 </div>
-                <div className={s.platformsAndGenresSelected}>
-                <div>    
-                    {/* Genres container */}
-                    <h3>Genres selected:</h3>
-                    <div>
-                        {
-                            input.genres.map(genre => (
-                                <div>
-                                    <p className={s.deleteGenreOrPlatform} onClick={() => handleGenresDelete(genre)}>{genre}</p>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-                <div>
-                    {/* Platforms container */}
-                    <h3>Platforms selected:</h3>
-                    <div>
-                        {
-                            input.platforms.map(platform => (
-                                <div>
-                                    <p className={s.deleteGenreOrPlatform} onClick={() => handlePlatformsDelete(platform)}>{platform}</p>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
             </form>
             
         </div>

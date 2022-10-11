@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import { getVideogames, getGenres, filterVideogamesByGenre, filterByCreator, sortByName, sortByRating} from "../../actions";
 import Card from "../Card/Card.jsx";
@@ -61,7 +60,7 @@ export default function Home(){
     }
 
     return(
-        <div>
+        <div className={s.background}>
             <div className={s.ordenamientosYFiltros}>
                 {/* Ordenamientos */}
                 <div className={s.ordenamientos}>
@@ -86,13 +85,13 @@ export default function Home(){
                 <div className={s.filtros}>
                     {/* Por creador */}
                     <select className={s.selectSortingOrFilter} onChange={e => handleFilterByCreator(e)}>
-                        <option default>SORT BY CREATOR</option>
+                        <option default>All</option>
                         <option value='false'>Api videogames</option>
                         <option value='true'>User created videogames</option>
                     </select>
                     {/* Por género */}
                     <select className={s.selectSortingOrFilter} onChange={e => handleFilterGenre(e)}>
-                        <option value='All' default>SORT BY GENRE</option>
+                        <option value='All' default>All</option>
                         {genres.map((g) => (
                             <option value={g.name}>{g.name}</option>
                         ))}
