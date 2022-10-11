@@ -21,10 +21,28 @@
     margin-top: 20px;
 }
 
+.selectSortingOrFilter{
+    border-radius: 10px;
+    height: 30px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: #22223B;
+    font-family: Monaco;
+    border: 2px solid white;
+    color: white;
+
+}
+
 .reloadButton{
-    margin-left: 45%;
-    width: 10%;
-    margin-bottom: 20px;
+    border-radius: 10px;
+    height: 30px;
+    width: 200px;
+    background-color: #22223B;
+    font-family: Monaco;
+    border: 2px solid white;
+    color: white;
 }
 
 .ordenamientos{

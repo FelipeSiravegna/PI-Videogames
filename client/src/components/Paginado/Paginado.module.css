@@ -7,10 +7,12 @@
 }
 
 .paginadoItem{
-    border: 1px solid black;
+    border: 2px solid white;
     padding: 5px;
-    background-color: white;
+    background-color: #22223B;
     border-radius: 5px;
+    font-family: Monaco;
+    color: white;
 }
 
 li:hover{

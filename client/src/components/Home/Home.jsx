@@ -66,33 +66,33 @@ export default function Home(){
                 {/* Ordenamientos */}
                 <div className={s.ordenamientos}>
                     {/* Ordenamiento por orden alfabético */}   
-                    <select onChange={e => handleSortByName(e)}>
-                        <option default>Sort by name</option>
+                    <select className={s.selectSortingOrFilter} onChange={e => handleSortByName(e)}>
+                        <option default>SORT BY NAME</option>
                         <option value='ascAlpha'>Alphabetically (A-Z)</option>
                         <option value='descAlpha'>Alphabetically (Z-A)</option>
                     </select>
                     {/* Ordenamiento por rating */}   
-                    <select onChange={e => handleSortByRating(e)}>
-                        <option default>Sort by rating</option>
+                    <select className={s.selectSortingOrFilter} onChange={e => handleSortByRating(e)}>
+                        <option default>SORT BY RATING</option>
                         <option value='ascRating'>Rating (Higher-Lower)</option>
                         <option value='descRating'>Rating (Lower-Higher)</option>
                     </select>
                 </div>
                 {/* Reload button */}
-                <button onClick={e => {handleClick(e)}}>
-                    Reload videogames
+                <button className={s.reloadButton} onClick={e => {handleClick(e)}}>
+                    RELOAD GAMES
                 </button>
                 {/* Filtros */}
                 <div className={s.filtros}>
                     {/* Por creador */}
-                    <select onChange={e => handleFilterByCreator(e)}>
-                        <option default>All</option>
+                    <select className={s.selectSortingOrFilter} onChange={e => handleFilterByCreator(e)}>
+                        <option default>SORT BY CREATOR</option>
                         <option value='false'>Api videogames</option>
                         <option value='true'>User created videogames</option>
                     </select>
                     {/* Por género */}
-                    <select onChange={e => handleFilterGenre(e)}>
-                        <option value='All' default>All</option>
+                    <select className={s.selectSortingOrFilter} onChange={e => handleFilterGenre(e)}>
+                        <option value='All' default>SORT BY GENRE</option>
                         {genres.map((g) => (
                             <option value={g.name}>{g.name}</option>
                         ))}

@@ -16,7 +16,7 @@ export default function LandingPage(){
                 <h2 className={s.text}>TO THE VIDEOGAME APP</h2>
                 <div className={s.button}>
                     <button className={s.letsPlay} onClick={handleClick}>
-                        LETS PLAY!
+                        PLAY
                     </button>
                 </div>
             </div>

@@ -22,11 +22,11 @@ export default function Searchbar(){
 
     return(
         <div className={s.container}>
-            <NavLink to={'/home'}>
-                <h1 className={s.h1Searchbar}>Videogames App</h1>
+            <NavLink to={'/home'} className={s.h3Searchbar}>
+                <h3 className={s.searchBarH3}>VIDEOGAMES APP</h3>
             </NavLink>
-            <NavLink to={'/videogame'}>
-                <h3>Create</h3>
+            <NavLink to={'/videogame'} className={s.h3Searchbar}>
+                <h3 className={s.searchBarH3} >CREATE</h3>
             </NavLink>
             <form 
                 className={s.searchbarForm}>

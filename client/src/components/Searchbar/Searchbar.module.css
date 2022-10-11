@@ -1,15 +1,27 @@
 .container{
-    background-color: black;
+    background-color: #22223B;
     color: white;
     width: 100%;
     height: 40px;
     display: flex;
     justify-content: space-evenly;
+    text-decoration: none;
 }
 
 .h1Searchbar{
-    font-size: 200%;
+    margin-top: 8px;
     text-decoration: none;
+}
+
+.h3Searchbar{
+    margin-top: 8px;
+    text-decoration: none;
+}
+
+.searchBarH3{
+    font-size: 20px;
+    color: white;
+    font-family: Monaco;
 }
 
 .searchbarForm{
@@ -23,3 +35,4 @@
 .searchbarButton{
     height: 30px;
 }
+
