@@ -21,7 +21,7 @@ export default function Detail(props){
                 <div className={s.container}>
                     <h1 className={s.title}>{videogame.name}</h1>
                     <img className={s.imgDetail} src={videogame.image}></img>
-                    <h4 className={s.description}>{videogame.description}</h4>
+                    <div className={s.description} dangerouslySetInnerHTML={{ __html: videogame.description }}></div>
                     <h4 className={s.texts}>RATING: {videogame.rating}</h4>
                     <h5 className={s.texts}>GENRES: {videogame.genres}</h5>
                     <h5 className={s.texts}>RELEASE DATE: {videogame.releaseDate}</h5>
