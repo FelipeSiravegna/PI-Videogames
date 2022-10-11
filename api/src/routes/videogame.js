@@ -23,6 +23,10 @@ router.get("/:id", async (req, res) => {
       //Guardo gameDB en juego para que sea más cómodo al crear gameDetails
       const juego = gameDB;
 
+      let newDescription = juego.description.slice(3, -4);
+      newDescription = newDescription.replaceAll("<p>", "");
+      newDescription = newDescription.replaceAll("</p>", "");
+
       //Creo un juego con toda la información que contiene gameDB (ahora almacenado en juego)
       const gameDetails = {
         id: juego.id,
@@ -30,7 +34,7 @@ router.get("/:id", async (req, res) => {
         createdByUser: juego.createdByUser,
         image: juego.image,
         genres: juego.genres.map((j) => j.name).join(", "),
-        description: juego.description,
+        description: newDescription,
         releaseDate: juego.releaseDate,
         rating: juego.rating,
         platforms: juego.platforms,
@@ -49,6 +53,10 @@ router.get("/:id", async (req, res) => {
       //Guardo la data de la respuesta de la API en juego para que sea más cómodo a la hora de crear gameDetails
       const juego = APIResponse.data;
 
+      let newDescription = juego.description.slice(3, -4);
+      newDescription = newDescription.replaceAll("<p>", "");
+      newDescription = newDescription.replaceAll("</p>", "");
+
       //Creo un juego con la info que trae la API (ahora almacenada en juego)
       const gameDetails = {
         name: juego.name,
@@ -58,7 +66,7 @@ router.get("/:id", async (req, res) => {
           .map((j) => j.name)
           .filter((j) => j !== null)
           .join(", "),
-        description: juego.description,
+        description: newDescription,
         releaseDate: juego.released,
         rating: juego.rating,
         platforms: juego.platforms
