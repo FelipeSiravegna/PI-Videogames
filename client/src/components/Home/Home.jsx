@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import { getVideogames, getGenres, filterVideogamesByGenre, filterByCreator, sortByName, sortByRating} from "../../actions";
 import Card from "../Card/Card.jsx";
@@ -105,7 +106,7 @@ export default function Home(){
                 {
                     currentVideogames?.map((game) => {
                         return (  
-                                <Card className={s.card} key={game.id} name={game.name} image={game.image} genres={game.genres} rating={game.rating} />
+                                <Card className={s.card} key={game.id} name={game.name} image={game.image} genres={game.genres} rating={game.rating} id={game.id}/>
                         );
                     })
                 }

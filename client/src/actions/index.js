@@ -81,3 +81,16 @@ export function sortByRating(payload) {
     payload: payload,
   };
 }
+
+export function getDetail(id) {
+  return (dispatch) => {
+    fetch(`http://localhost:3001/videogame/${id}`)
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch({
+          type: "GET_DETAILS",
+          payload: json,
+        });
+      });
+  };
+}

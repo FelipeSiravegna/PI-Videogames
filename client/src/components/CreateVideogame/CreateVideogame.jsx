@@ -175,7 +175,7 @@ export default function CreateVideogame(){
                         {
                             input.genres.map(genre => (
                                 <div>
-                                    <p onClick={() => handleGenresDelete(genre)}>{genre}</p>
+                                    <p className={s.deleteGenreOrPlatform} onClick={() => handleGenresDelete(genre)}>{genre}</p>
                                 </div>
                             ))
                         }
@@ -188,7 +188,7 @@ export default function CreateVideogame(){
                         {
                             input.platforms.map(platform => (
                                 <div>
-                                    <p onClick={() => handlePlatformsDelete(platform)}>{platform}</p>
+                                    <p className={s.deleteGenreOrPlatform} onClick={() => handlePlatformsDelete(platform)}>{platform}</p>
                                 </div>
                             ))
                         }
