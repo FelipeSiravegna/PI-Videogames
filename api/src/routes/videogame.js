@@ -23,7 +23,7 @@ router.get("/:id", async (req, res) => {
       //Guardo gameDB en juego para que sea más cómodo al crear gameDetails
       const juego = gameDB;
 
-      let newDescription = juego.description.slice(3, -4);
+      let newDescription = juego.description;
       newDescription = newDescription.replaceAll("<p>", "");
       newDescription = newDescription.replaceAll("</p>", "");
       newDescription = newDescription.replaceAll("<br/>", "");
@@ -38,7 +38,7 @@ router.get("/:id", async (req, res) => {
         description: newDescription,
         releaseDate: juego.releaseDate,
         rating: juego.rating,
-        platforms: juego.platforms,
+        platforms: juego.platforms.map((p) => p).join(", "),
         createdAt: juego.createdAt,
         updatedAt: juego.updatedAt,
       };
@@ -53,8 +53,7 @@ router.get("/:id", async (req, res) => {
 
       //Guardo la data de la respuesta de la API en juego para que sea más cómodo a la hora de crear gameDetails
       const juego = APIResponse.data;
-
-      let newDescription = juego.description.slice(3, -4);
+      let newDescription = juego.description;
       newDescription = newDescription.replaceAll("<p>", "");
       newDescription = newDescription.replaceAll("<br />", "");
       newDescription = newDescription.replaceAll("</p>", "");
