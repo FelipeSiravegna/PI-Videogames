@@ -65,3 +65,20 @@
     display: flex;
     gap: 25px;
 }
+
+.errorMessage{
+    color: white;
+    font-family: Monaco;
+    padding: 10px;
+}
+
+.errorContainer{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color: #22223B;
+    width: 100%;
+    margin-left: 205%;
+}

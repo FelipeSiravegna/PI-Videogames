@@ -101,7 +101,8 @@ export default function Home(){
             <div className={s.containerVideogameCards}>
                 {
                     currentVideogames?.map((game) => {
-                        return (  
+                        return (
+                                game.error? <div className={s.errorContainer}><h2 className={s.errorMessage}>Videogame not found</h2></div> :
                                 <Card className={s.card} key={game.id} name={game.name} image={game.image} genres={game.genres} rating={game.rating} id={game.id}/>
                         );
                     })

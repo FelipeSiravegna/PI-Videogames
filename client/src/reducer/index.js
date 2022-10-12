@@ -94,7 +94,9 @@ export default function rootReducer(state = initialState, action) {
     case "GET_NAME_VIDEOGAMES":
       return {
         ...state,
-        videogames: action.payload,
+        videogames: action.payload.error
+          ? [{ error: "No videogames found" }]
+          : action.payload,
       };
     case "POST_VIDEOGAME":
       return {
