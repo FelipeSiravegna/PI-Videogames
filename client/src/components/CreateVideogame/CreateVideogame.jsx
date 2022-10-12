@@ -36,7 +36,6 @@ export default function CreateVideogame(){
             ...input,
             [e.target.name] : e.target.value
         })
-        console.log(input)
     }
 
     const handleSelectGenres = (e) => {
