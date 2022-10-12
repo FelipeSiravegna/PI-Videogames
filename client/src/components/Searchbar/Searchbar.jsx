@@ -32,7 +32,8 @@ export default function Searchbar(){
                 className={s.searchbarForm}>
                 <input 
                     type='text' 
-                    onChange={(e) => handleInputChange(e)} 
+                    onChange={(e) => handleInputChange(e)}
+                    value={name}
                     placeholder='Search...'
                     className={s.inputSearchbar}
                 />
