@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getVideogames, getGenres, filterVideogamesByGenre, filterByCreator, sortByName, sortByRating} from "../../actions";
 import Card from "../Card/Card.jsx";
 import Paginado from "../Paginado/Paginado.jsx";
+import Loading from "../Loading/Loading.jsx";
 import s from './Home.module.css'
 
 export default function Home(){
@@ -99,13 +100,18 @@ export default function Home(){
             <Paginado videogamesPerPage={videogamesPerPage} allVideogames={allVideogames.length} paginado={paginado}/>
 
             <div className={s.containerVideogameCards}>
-                {
+                {   
+                    currentVideogames.length ?
                     currentVideogames?.map((game) => {
                         return (
                                 game.error? <div className={s.errorContainer}><h2 className={s.errorMessage}>Videogame not found</h2></div> :
                                 <Card className={s.card} key={game.id} name={game.name} image={game.image} genres={game.genres} rating={game.rating} id={game.id}/>
                         );
                     })
+                    :
+                    <div>
+                        <Loading />
+                    </div>
                 }
             </div>
         </div>
