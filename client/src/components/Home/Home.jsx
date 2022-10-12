@@ -19,7 +19,6 @@ export default function Home(){
     const indexOfLastVideogame = currentPage * videogamesPerPage; //15
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage; // 0
     const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
-    const [orden, setOrden] = useState('');
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -49,14 +48,12 @@ export default function Home(){
         e.preventDefault();
         dispatch(sortByName(e.target.value));
         setCurrentPage(1);
-        setOrden(`Orden ${e.target.value}`)
     }
 
     const handleSortByRating = (e) => {
         e.preventDefault();
         dispatch(sortByRating(e.target.value))
         setCurrentPage(1);
-        setOrden(`Orden ${e.target.value}`)
     }
 
     return(
