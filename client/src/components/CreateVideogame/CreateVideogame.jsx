@@ -67,8 +67,6 @@ export default function CreateVideogame(){
         })
     }
 
-    const regexRating = /[+-]?([0-9]*[.])?\b[1-5]{1,1}\b/; //regex 1-5
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
