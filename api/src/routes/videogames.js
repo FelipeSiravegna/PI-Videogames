@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
           return gameDB;
         });
 
-        //Traigo de la API los 15 juegos que coincidan con la palabra ingresada por query
+        //Traigo de la API los primeros 15 juegos que coincidan con la palabra ingresada por query
         let gamesAPI = await axios.get(
           `https://api.rawg.io/api/games?search=${name}&key=${API_KEY}&page_size=15`
         );
