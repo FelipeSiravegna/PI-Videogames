@@ -1,12 +1,12 @@
 .formContainer{
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 10%;
+    margin-left: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 60%;
     background-color: #22223B;
     border: 3px solid white;
     border-radius: 10px;
@@ -56,10 +56,18 @@
 }
 
 .deleteGenreOrPlatform:hover{
+    color: red;
+}
+
+.deleteGenreOrPlatform:hover{
     cursor: pointer;
 }
 
 .formInput{
     border-radius: 10px;
     height: 20px;
+}
+
+.deleteText{
+    color: white;
 }

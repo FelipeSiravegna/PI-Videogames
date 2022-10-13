@@ -157,6 +157,7 @@ export default function CreateVideogame(){
                         }
                     </select>
                 </div>
+                <p className={s.deleteText}>IF YOU WANT TO DELETE A GENRE OR PLATFORM, CLICK ON THE ONE YOU WANT TO DELETE</p>
                 <div className={s.platformsAndGenresSelected}>
                     <div className={s.genresContainer}>    
                         {/* Genres container */}
