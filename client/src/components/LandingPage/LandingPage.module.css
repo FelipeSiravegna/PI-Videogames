@@ -31,7 +31,6 @@
     text-align: center;
     justify-content: center;
     color: white;
-    font-family: Monaco;
 }
 
 h1 {
@@ -59,7 +58,6 @@ h2{
     transition-duration: 0.4s;
     font-weight: bolder;
     font-size: 18px;
-    font-family: Monaco;
 }
 
 

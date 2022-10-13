@@ -8,7 +8,6 @@ export default function LandingPage(){
         history.push('/home');
     }
     
-
     return(
         <div className={s.background}>
             <div className={s.container}>

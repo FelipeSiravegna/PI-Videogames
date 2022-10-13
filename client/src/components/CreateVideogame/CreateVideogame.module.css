@@ -29,13 +29,11 @@
     width: 100px;
     background-color: white;
     border-radius: 10px;
-    font-family: Monaco;
 }
 
 .labels{
     margin: 8px;
     color: white;
-    font-family: Monaco;
 
 }
 
@@ -52,7 +50,6 @@
 }
 
 .deleteGenreOrPlatform{
-    font-family: Monaco;
     display: flex;
     justify-content: center;
     text-align: center;

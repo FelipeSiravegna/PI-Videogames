@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap');
+
 .cardDiv{
     display: flex;
     flex-direction: column;
@@ -24,7 +26,6 @@ h4{
     justify-content: center;
     text-align: center;
     font-size: 12px;
-    font-family: Monaco;
     font-weight: bolder;
     color: white;
 }
@@ -36,7 +37,6 @@ h3{
     font-size: 14px;
     text-decoration: none;
     font-weight: bolder;
-    font-family: Monaco;
 }
 
 img{
@@ -55,6 +55,5 @@ h5{
     text-align: center;
     font-size: 13px;
     font-weight: bolder;
-    font-family: Monaco;
     color:white
 }

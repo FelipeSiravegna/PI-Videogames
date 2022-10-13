@@ -21,7 +21,6 @@
 .searchBarH3{
     font-size: 20px;
     color: white;
-    font-family: Monaco;
 }
 
 .searchbarForm{
@@ -34,7 +33,6 @@
 
 .searchbarButton{
     height: 30px;
-    font-family: Monaco;
     width: 50px;
     border-radius: 10px;
 }
@@ -45,6 +43,5 @@
 
 .inputSearchbar{
     border-radius: 10px;
-    font-family: Monaco;
     width: 130px
 }

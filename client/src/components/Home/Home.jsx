@@ -20,6 +20,7 @@ export default function Home(){
     const indexOfLastVideogame = currentPage * videogamesPerPage; //15
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage; // 0
     const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+    const [order, setOrder] = useState('');
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -31,10 +32,15 @@ export default function Home(){
         dispatch(getGenres());
     }, [dispatch])
 
+    useEffect(() => {
+
+    })
+
     //Función que vuelve a pedír todos los videojuegos en caso de querer "resetear" la página
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(getVideogames());
+        setCurrentPage(1);
     }
 
     const handleFilterGenre = (e) => {
@@ -49,12 +55,14 @@ export default function Home(){
         e.preventDefault();
         dispatch(sortByName(e.target.value));
         setCurrentPage(1);
+        setOrder(`Order ${order}`)
     }
 
     const handleSortByRating = (e) => {
         e.preventDefault();
         dispatch(sortByRating(e.target.value))
         setCurrentPage(1);
+        setOrder(`Order ${order}`)
     }
 
     return(
@@ -91,7 +99,7 @@ export default function Home(){
                     <select className={s.selectSortingOrFilter} onChange={e => handleFilterGenre(e)}>
                         <option value='All' default>All</option>
                         {genres.map((g) => (
-                            <option value={g.name}>{g.name}</option>
+                            <option key={g.name} value={g.name}>{g.name}</option>
                         ))}
                     </select>
                 </div>
