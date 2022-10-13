@@ -14,6 +14,7 @@ export default function Detail(props){
 
     const videogame = useSelector(state => state.detail)
 
+    //Component will unmount
     useEffect(() => {
         return() => {
             dispatch(resetDetail())
