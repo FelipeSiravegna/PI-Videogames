@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {getDetail} from '../../actions';
+import {getDetail, resetDetail} from '../../actions';
 import s from './Detail.module.css'
 
 export default function Detail(props){
@@ -14,6 +14,12 @@ export default function Detail(props){
 
     const videogame = useSelector(state => state.detail)
 
+    useEffect(() => {
+        return() => {
+            dispatch(resetDetail())
+        }
+    }, [])
+    
     return(
         <div>
             {

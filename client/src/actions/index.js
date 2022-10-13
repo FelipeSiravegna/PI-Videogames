@@ -94,3 +94,11 @@ export function getDetail(id) {
       });
   };
 }
+
+export function resetDetail() {
+  return (dispatch) => {
+    dispatch({
+      type: "RESET_DETAIL",
+    });
+  };
+}
