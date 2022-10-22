@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDetail, resetDetail} from '../../actions';
+import Loading from '../Loading/Loading.jsx';
 import s from './Detail.module.css'
 
 export default function Detail(props){
@@ -24,7 +25,7 @@ export default function Detail(props){
     return(
         <div>
             {
-                videogame?
+                videogame ?
                 <div className={s.container}>
                     <h1 className={s.title}>{videogame.name}</h1>
                     <img className={s.imgDetail} src={videogame.image}></img>
@@ -36,7 +37,7 @@ export default function Detail(props){
                 </div>
                 :
                 <div>
-                    <h1>Videogame does not exist!</h1>
+                    <Loading />
                 </div>
             }
             <Link to='/home'>
