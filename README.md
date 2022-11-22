@@ -1,6 +1,6 @@
 # Individual Project (Henry) - Countries-Api
 
-## Objetivos Realizados en este Proyecto
+## Objetivos logrados en este proyecto
 -Construír una app utilizando Sequelize, Node, Express, React y Redux 
 -Mejorar las habilidades aprendidas durante el bootcamp
 -Aprender y practicar el uso de Git y GitHub
