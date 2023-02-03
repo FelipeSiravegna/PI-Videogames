@@ -23,7 +23,7 @@ export default function Searchbar() {
     return (
         <div className={s.container}>
             <NavLink to={'/home'} className={s.h3Searchbar}>
-                <h3 className={s.searchBarH3}>VIDEOGAMES APP</h3>
+                <h3 className={s.searchBarH3}>GAMEGEIST</h3>
             </NavLink>
             <NavLink to={'/videogame'} className={s.h3Searchbar}>
                 <h3 className={s.searchBarH3} >CREATE</h3>
