@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap');
 
-.cardDiv{
+.cardDiv {
     display: flex;
     flex-direction: column;
 
@@ -14,32 +14,32 @@
     border-radius: 10px;
 }
 
-.cardH3{
+.cardH3 {
     text-decoration: none;
     color: white;
     font-weight: bolder;
 
 }
 
-h4{
+h4 {
     display: flex;
     justify-content: center;
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bolder;
     color: white;
 }
 
-h3{
+h3 {
     display: flex;
     justify-content: center;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
     font-weight: bolder;
 }
 
-img{
+img {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -49,11 +49,11 @@ img{
     height: 140px;
 }
 
-h5{
+h5 {
     display: flex;
     justify-content: center;
     text-align: center;
     font-size: 13px;
     font-weight: bolder;
-    color:white
+    color: white
 }
