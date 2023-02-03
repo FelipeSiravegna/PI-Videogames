@@ -1,47 +1,46 @@
-.container{
+.container {
+    display: flex;
     background-color: #22223B;
     color: white;
     width: 100%;
-    height: 40px;
-    display: flex;
-    justify-content: space-evenly;
+    height: 3vw;
+    justify-content: space-around;
+    text-decoration: none;
+    align-items: center;
+}
+
+.h1Searchbar {
     text-decoration: none;
 }
 
-.h1Searchbar{
-    margin-top: 8px;
+.h3Searchbar {
     text-decoration: none;
 }
 
-.h3Searchbar{
-    margin-top: 8px;
-    text-decoration: none;
-}
-
-.searchBarH3{
-    font-size: 20px;
+.searchBarH3 {
+    margin-left: 2.8vw;
+    font-size: 1.5vw;
     color: white;
 }
 
-.searchbarForm{
+.searchbarForm {
     display: flex;
     justify-content: center;
     text-align: center;
-    height: 30px;
-    margin-top: 5px;
+    height: 2.1vw;
 }
 
-.searchbarButton{
-    height: 30px;
-    width: 50px;
-    border-radius: 10px;
+.searchbarButton {
+    height: 2.1vw;
+    width: 3vw;
+    border-radius: 0.5vw;
 }
 
-.searchbarButton:hover{
+.searchbarButton:hover {
     cursor: pointer;
 }
 
-.inputSearchbar{
-    border-radius: 10px;
-    width: 130px
+.inputSearchbar {
+    border-radius: 0.5vw;
+    width: 10vw
 }
