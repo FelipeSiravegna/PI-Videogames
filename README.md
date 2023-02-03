@@ -1,4 +1,4 @@
-# Individual Project (Henry) - Countries-Api
+# Proyecto individual (Henry) - Videogames-Api
 
 ## Objetivos logrados en este proyecto
 -Construír una app utilizando Sequelize, Node, Express, React y Redux 
