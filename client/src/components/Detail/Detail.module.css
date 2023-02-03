@@ -1,57 +1,59 @@
-.container{
+.container {
+    display: flex;
     width: 80%;
     height: 80%;
-    margin-top: 10px;
     margin-left: 10%;
-    display: flex;
+    margin-top: 2vw;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    border: 3px solid white;
-    border-radius: 10px;
+    border: 0.3vw solid white;
+    border-radius: 1vw;
     background-color: #22223B;
+    padding: 1vw;
 }
 
-h1{
+h1 {
     color: white;
 }
 
-.imgDetail{
+.imgDetail {
     margin-left: 30%;
     width: 40%;
-    height: 200px;
+    height: 15vw;
 }
 
-.backButton{
+.backButton {
     width: 10%;
-    margin-top: 10px;
+    margin-top: 1vw;
     margin-left: 45%;
-    border-radius: 10px;
-    border: 3px solid white;
+    border-radius: 1vw;
+    border: 0.3vw solid white;
     background-color: #22223B;
     color: white;
-    height: 30px;
+    height: 3vw;
+    font-size: 1.5vw;
     text-decoration: none;
-    margin-bottom: 10px;
+    margin-bottom: 1vw;
 }
 
-.backButton:hover{
+.backButton:hover {
     cursor: pointer;
 }
 
-.description{
+.description {
     width: 90%;
     margin-top: 10px;
     margin-left: 5%;
-    margin-bottom: 10px;
+    margin-bottom: 1vw;
     color: white;
-    font-size: 15px;
+    font-size: 1.25vw;
 }
 
-.texts{
-    margin-bottom: 10px;
+.texts {
+    margin-bottom: 1vw;
 }
 
-.title{
-    margin-top: 10px
+.title {
+    margin-top: 1vw;
 }
