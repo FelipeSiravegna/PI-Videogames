@@ -3,12 +3,8 @@
     gap: 1vw;
     row-gap: 1vw;
     grid-template-columns: repeat(5, 1fr);
-
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    place-items: center;
     margin-top: 2%;
-    margin-bottom: 2%;
     padding-bottom: 2vw;
 }
 
