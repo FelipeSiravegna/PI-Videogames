@@ -1,7 +1,7 @@
-.containerVideogameCards{
+.containerVideogameCards {
     display: grid;
-    gap: 10px;
-    row-gap: 20px;
+    gap: 1vw;
+    row-gap: 1vw;
     grid-template-columns: repeat(5, 1fr);
 
     width: 90%;
@@ -9,72 +9,73 @@
     margin-right: 5%;
     margin-top: 2%;
     margin-bottom: 2%;
-    padding: 0px;
+    padding-bottom: 2vw;
 }
 
-.background{
-    height: 900px;
+.background {
+    height: 100%;
 }
 
-.ordenamientosYFiltros{
+.ordenamientosYFiltros {
     display: flex;
     text-align: center;
     justify-content: center;
     flex-direction: row;
-    gap: 25px;
-    margin-top: 20px;
+    gap: 2vw;
+    margin-top: 2vw;
 }
 
-.selectSortingOrFilter{
-    border-radius: 10px;
-    height: 30px;
-    width: 200px;
+.selectSortingOrFilter {
+    border-radius: 0.8vw;
+    height: 2.5vw;
+    width: 15vw;
     display: flex;
     justify-content: center;
     text-align: center;
     background-color: #22223B;
-    border: 2px solid white;
+    border: 0.25vw solid white;
     color: white;
 }
 
-.selectSortingOrFilter:hover{
+.selectSortingOrFilter:hover {
     cursor: pointer;
 }
 
-.reloadButton{
-    border-radius: 10px;
-    height: 30px;
-    width: 200px;
+.reloadButton {
+    border-radius: 0.8vw;
+    height: 2.5vw;
+    width: 15vw;
     background-color: #22223B;
-    border: 2px solid white;
+    border: 0.25vw solid white;
     color: white;
 }
 
-.reloadButton:hover{
+.reloadButton:hover {
     cursor: pointer;
 }
-.ordenamientos{
+
+.ordenamientos {
     display: flex;
-    gap: 25px;
+    gap: 2vw;
 }
 
-.filtros{
+.filtros {
     display: flex;
-    gap: 25px;
+    gap: 2vw;
 }
 
-.errorMessage{
+.errorMessage {
     color: white;
-    padding: 10px;
+    padding: 1.5vw;
 }
 
-.errorContainer{
+.errorContainer {
     display: flex;
     justify-content: center;
-    text-align: center;
-    border: 3px solid white;
-    border-radius: 10px;
+    align-items: center;
+    border: 0.4vw solid white;
+    border-radius: 1vw;
     background-color: #22223B;
-    width: 100%;
-    margin-left: 205%;
+    width: 25vw;
+    margin-left: 125%;
 }
