@@ -1,53 +1,39 @@
 import axios from "axios";
+
 export function getVideogames() {
-  return (dispatch) => {
-    fetch(`http://localhost:3001/videogames`)
-      .then((response) => response.json())
-      .then((json) => {
-        dispatch({ type: "GET_VIDEOGAMES", payload: json });
+  return async function (dispatch) {
+    await axios.get(`/videogames`)
+      .then(json => {
+        dispatch({ type: "GET_VIDEOGAMES", payload: json.data });
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+      .catch((error) => { console.error(error); })
+  }
 }
 
 export function getGenres() {
-  return (dispatch) => {
-    fetch(`http://localhost:3001/genres`)
-      .then((response) => response.json())
-      .then((json) => {
-        dispatch({
-          type: "GET_GENRES",
-          payload: json,
-        });
+  return async function (dispatch) {
+    await axios.get(`/genres`)
+      .then(json => {
+        dispatch({ type: "GET_GENRES", payload: json.data });
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+      .catch((error) => { console.error(error); })
+  }
 }
 
 export function getNameVideogames(name) {
-  return (dispatch) => {
-    fetch(`http://localhost:3001/videogames?name=${name}`)
-      .then((response) => response.json())
-      .then((json) => {
-        dispatch({
-          type: "GET_NAME_VIDEOGAMES",
-          payload: json,
-        });
+  return async function (dispatch) {
+    await axios.get(`/videogames?name=${name}`)
+      .then(json => {
+        dispatch({ type: "GET_NAME_VIDEOGAMES", payload: json.data });
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+      .catch((error) => { console.error(error); })
+  }
 }
 
 export function postVideogame(payload) {
   return async (dispatch) => {
     const response = await axios.post(
-      `http://localhost:3001/videogame`,
+      `/videogame`,
       payload
     );
     return response;
@@ -83,16 +69,13 @@ export function sortByRating(payload) {
 }
 
 export function getDetail(id) {
-  return (dispatch) => {
-    fetch(`http://localhost:3001/videogame/${id}`)
-      .then((response) => response.json())
-      .then((json) => {
-        dispatch({
-          type: "GET_DETAILS",
-          payload: json,
-        });
-      });
-  };
+  return async function (dispatch) {
+    await axios.get(`/videogame/${id}`)
+      .then(json => {
+        dispatch({ type: "GET_DETAILS", payload: json.data });
+      })
+      .catch((error) => console.error(error));
+  }
 }
 
 export function resetDetail() {
