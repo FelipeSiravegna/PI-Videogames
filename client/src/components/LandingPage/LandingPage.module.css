@@ -1,17 +1,17 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
 
 .background {
-    margin-top: 0%; 
+    margin-top: 0%;
     min-height: 100vh;
     background-color: #C9ADA7;
     background-image: url('./1605.m00.i104.n037.S.c12.Isometric_3D_game_play_scene_vector-removebg-preview.png');
     background-size: cover;
 }
 
-.container{
+.container {
     height: 50%;
     width: 50%;
     position: fixed;
@@ -24,7 +24,7 @@
     background-color: #22223B;
 }
 
-.text{
+.text {
     margin-top: 10%;
     display: flex;
     text-align: center;
@@ -36,10 +36,11 @@ h1 {
     font-size: 40px;
 }
 
-h2{
+h2 {
     font-size: 30px;
 }
-.button{
+
+.button {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -47,7 +48,7 @@ h2{
     font-weight: 1000;
 }
 
-.letsPlay{
+.letsPlay {
     width: 140px;
     height: 60px;
     border-radius: 12px;
@@ -60,7 +61,8 @@ h2{
 }
 
 
-.letsPlay:hover{
-    background-color: white; /* Green */
+.letsPlay:hover {
+    background-color: white;
     color: #22223B;
+    cursor: pointer;
 }
