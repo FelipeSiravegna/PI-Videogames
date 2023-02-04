@@ -34,6 +34,7 @@
     height: 2.1vw;
     width: 3vw;
     border-radius: 0.5vw;
+    font-size: 1.4vw;
 }
 
 .searchbarButton:hover {
