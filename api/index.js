@@ -1,8 +1,9 @@
+require("dotenv").config();
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 const axios = require("axios");
 const { Genre } = require("./src/db");
-const { API_KEY } = process.env;
+const { API_KEY, PORT } = process.env;
 
 const checkDB = async () => {
   //Traigo todos los genres de la API
@@ -20,8 +21,8 @@ const checkDB = async () => {
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(process.env.PORT || 3000, async () => {
-    console.log(`Listening on port ${process.env.PORT}`)
+  server.listen(PORT || 3000, async () => {
+    console.log(`Listening on port ${PORT}`)
     await checkDB(); // eslint-disable-line no-console
   });
 });
