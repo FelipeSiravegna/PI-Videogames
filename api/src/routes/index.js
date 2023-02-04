@@ -5,6 +5,7 @@ const videogames = require("./videogames");
 const videogame = require("./videogame");
 const genres = require("./genres");
 const createVideogame = require("./createVideogame");
+const healthcheck = require('./healthcheck');
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.use("/videogame", videogame);
 router.use("/videogame", createVideogame);
 //Traigo todos los generos
 router.use("/genres", genres);
+router.use('/healthcheck', healthcheck);
 
 module.exports = router;

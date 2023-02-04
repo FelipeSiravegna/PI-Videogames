@@ -20,7 +20,8 @@ const checkDB = async () => {
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(process.env.PORT, async () => {
-    console.log(`Listening on port ${process.env.PORT}`, await checkDB()); // eslint-disable-line no-console
+  server.listen(process.env.PORT || 3000, async () => {
+    console.log(`Listening on port ${process.env.PORT}`)
+    await checkDB(); // eslint-disable-line no-console
   });
 });
