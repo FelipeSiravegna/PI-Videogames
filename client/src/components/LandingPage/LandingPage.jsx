@@ -12,7 +12,7 @@ export default function LandingPage() {
         <div className={s.background}>
             <div className={s.container}>
                 <h1 className={s.text}>WELCOME TO</h1>
-                <h2 className={s.text}>GAMEGEIST</h2>
+                <h2 className={s.textGamegeist}>GAMEGEIST</h2>
                 <div className={s.button}>
                     <button className={s.letsPlay} onClick={handleClick}>
                         PLAY

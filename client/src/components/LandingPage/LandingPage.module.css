@@ -32,6 +32,15 @@
     color: white;
 }
 
+.textGamegeist {
+    margin-top: 5%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    font-size: 3.5vw;
+}
+
 h1 {
     font-size: 40px;
 }
