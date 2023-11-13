@@ -1,3 +1,40 @@
+# Individual Project (Henry) - Videogames-Api
+
+## Objectives achieved in this project
+-Build an app using Sequelize, Node, Express, React, and Redux
+-Improve the skills learned during the bootcamp
+-Learn and practice the use of Git and GitHub
+
+The main idea is to create an app where different video games and their detailed information can be viewed using the external api rawg.io and with this be able to:
+
+-Search for video games
+-Filter and sort them
+-Create new video games
+
+### This app was developed with:
+-JavaScript
+Database: PostgreSQL
+Back-End: Sequelize, NodeJs, and ExpressJs
+Front-End: HTML, CSS Modules, React, and Redux
+
+#### Getting started:
+In the api folder, create a file named .env that contains the following data:
+
+DB_USER=user
+DB_PASSWORD=password
+DB_HOST=localhost
+
+Replace "user" and "password" with your own Postgres credentials. Additionally, it is necessary to create a database from psql called "videogames".
+
+Now you can start the project using the following commands:
+
+npm install
+npm start
+
+Both commands must be executed from the /api and /client folders.
+
+------------------------------------------------------------------------------------------------------
+
 # Proyecto individual (Henry) - Videogames-Api
 
 ## Objetivos logrados en este proyecto
